@@ -1,0 +1,78 @@
+{"_default": {}, "buttonCMD": {
+        "1": {"button": 24, "action": "XPT ME:3:PV:IN:1"}, #PVW 1
+        "2": {"button": 25, "action": "XPT ME:3:PV:IN:2"}, #PVW 2
+        "3": {"button": 26, "action": "XPT ME:3:PV:IN:3"}, #PVW 3
+        "4": {"button": 27, "action": "XPT ME:3:PV:IN:4"}, #PVW 4
+        "5": {"button": 28, "action": "XPT ME:3:PV:IN:5"}, #PVW 5
+        "6": {"button": 29, "action": "XPT ME:3:PV:IN:6"}, #PVW 6
+        "7": {"button": 30, "action": "XPT ME:3:PV:IN:7"}, #PVW 7
+        "8": {"button": 31, "action": "XPT ME:3:PV:IN:8"}, #PVW 8
+        "9": {"button": 36, "action": "XPT ME:3:PV:IN:9"}, #PVW 9
+        "10": {"button": 37, "action": "XPT ME:3:PV:IN:10"}, #PVW 10
+        "11": {"button": 16, "action": "XPT ME:3:PGM:IN:1"}, #PGM 1
+        "12": {"button": 17, "action": "XPT ME:3:PGM:IN:2"}, #PGM 2
+        "15": {"button": 18, "action": "XPT ME:3:PGM:IN:3"}, #PGM 3
+        "14": {"button": 19, "action": "XPT ME:3:PGM:IN:4"}, #PGM 4
+        "15": {"button": 20, "action": "XPT ME:3:PGM:IN:5"}, #PGM 5
+        "16": {"button": 21, "action": "XPT ME:3:PGM:IN:6"}, #PGM 6
+        "17": {"button": 22, "action": "XPT ME:3:PGM:IN:7"}, #PGM 7
+        "18": {"button": 23, "action": "XPT ME:3:PGM:IN:8"}, #PGM 8
+        "19": {"button": 32, "action": "XPT ME:3:PGM:IN:9"}, #PGM 9
+        "20": {"button": 33, "action": "XPT ME:3:PGM:IN:10"}, #PGM 10
+        "21": {"button": 38, "action": "MECUT ME:3"}, #CUT
+        "22": {"button": 39, "action": "MEAUTO ME:3"}, #AUTO TRANS
+        "23": {"button": 50, "action": "TRANSTYPE ME:3:DISS"}, #TRANS MIX
+        "24": {"button": 51, "action": "TRANSTYPE ME:3:WIPE"}, #TRANS WIPE
+        "25": {"button": 48, "action": "KEYAUTO ME:3:3"}, #KEY TRANS BKGD
+        "26": {"button": 49, "action": "KEYAUTO ME:3:4"}, #KEY TRANS KEY
+        "27": {"button": 52, "action": "KEYAUTO ME:3:1"}, #DSK CUT
+        "28": {"button": 53, "action": "KEYAUTO ME:3:2"}, #DSK WIPE
+        "29": {"button": 54, "action": "FTB"}, #FTB
+        "30": {"button": 55, "action": "KEYCUT ME:3:1"}, #DSK PVW
+        "31": {"button": 8, "action": "CC 1:01"}, #KEY 1
+        "32": {"button": 9, "action": "CC 1:02"}, #KEY 2
+        "33": {"button": 10, "action": "CC 1:03"}, #KEY 3
+        "34": {"button": 11, "action": "CC 1:04"}, #KEY 4
+        "35": {"button": 12, "action": "CC 1:05"}, #KEY 5
+        "36": {"button": 13, "action": "CC 1:06"}, #KEY 6
+        "37": {"button": 14, "action": "CC 1:07"}, #KEY 7
+        "38": {"button": 15, "action": "CC 1:08"}, #KEY 8
+        "39": {"button": 34, "action": "CC 1:09"}, #KEY 9
+        "40": {"button": 35, "action": "CC 1:10"}, #KEY 10
+        "41": {"button": 67, "action": "CC 2:01"}, #PATTERN POSITIONER
+        "42": {"button": 68, "action": "CC 2:02"}, #PATTERN 1
+        "43": {"button": 69, "action": "CC 2:03"}, #PATTERN 2
+        "44": {"button": 66, "action": "CC 2:04"}, #PATTERN 3
+        "45": {"button": 65, "action": "CC 2:05"}, #PATTERN 4
+        "46": {"button": 64, "action": "CC 2:06"}, #PATTERN 5
+        "47": {"button": 24, "action": "CC 2:07"}, #PATTERN REVERSE
+        "48": {"button": 76, "action": "CC 2:08"}, #PATTERN 6
+        "49": {"button": 77, "action": "CC 2:09"}, #PATTERN 7
+        "50": {"button": 74, "action": "CC 2:10"}, #PATTERN 8
+        "51": {"button": 73, "action": "CC 2:11"}, #PATTERN 9
+        "52": {"button": 72, "action": "CC 2:12"}, #PATTERN 10
+        "53": {"button": 0, "action": "KEYCUTOFF ME:3:1\nKEYCUTOFF ME:3:2\nKEYCUTOFF ME:3:3\nKEYCUTOFF ME:3:4"}, #PATTERN ENABLE
+        "54": {"button": 7, "action": ""}, #PATTERN ASPECT ON
+        "55": {"button": 1, "action": ""}, #EFFECTS MATTE FILL
+        "56": {"button": 2, "action": "TRANSINCL ME:3:B:1"}, #EFFECTS PST PTN
+        "57": {"button": 3, "action": "TRANSINCL ME:3:B:2"}, #EFFECTS KEY BUS
+        "58": {"button": 4, "action": "TRANSINCL ME:3:B:3"}, #EFFECTS EFF EXT
+        "59": {"button": 5, "action": "TRANSINCL ME:3:B:4"}, #EFFECTS CHROMA KEY
+        "60": {"button": 6, "action": "TRANSINCL ME:3:B"}, #EFFECTS KEY MASK
+        "61": {"button": 47, "action": "TRANSINCL ME:3:B:1:2:3:4"}, #EFFECTS KEY INVERT
+        "62": {"button": 71, "action": ""}, #MATTE BKGD
+        "63": {"button": 79, "action": ""}, #AUTO RATE EDITOR ENABLE
+        "64": {"button": 63, "action": ""}, #AUTO RATE SET 1
+        "65": {"button": 70, "action": ""}, #AUTO RATE SET 2
+        "66": {"button": 78, "action": ""}, #AUTO RATE SET 3
+        "67": {"button": 62, "action": ""}, #AUTO RATE SELECT
+        "68": {"button": 40, "action": ""}, #DSK EXT VIDEO
+        "69": {"button": 41, "action": "KEYCUTON ME:3:1"}, #DSK DSK MATTE
+        "70": {"button": 42, "action": "KEYCUTON ME:3:2"}, #DSK BORDER LINE
+        "71": {"button": 56, "action": "KEYCUTON ME:3:3"}, #DSK DROP SHADOW
+        "72": {"button": 57, "action": "KEYCUTON ME:3:4"}, #DSK OUT LINE
+        "73": {"button": 43, "action": "KEYCUT ME:3:3"}, #DSK DSK EXT
+        "74": {"button": 44, "action": "KEYCUT ME:3:4"}, #DSK KEY BUS
+        "75": {"button": 46, "action": "KEYCUT ME:3:1"}, #DSK KEY MASK
+        "76": {"button": 45, "action": "KEYCUT ME:3:2"} #DSK KEY INVERT
+}
