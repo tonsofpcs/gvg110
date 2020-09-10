@@ -19,10 +19,6 @@ PGMled = [33, 35, 37, 39, 13, 15, 14, 12, 0, 2]
 PRVled = [38, 36, 34, 32, 1, 3, 5, 7, 6, 4]
 KEYled = [30, 28, 26, 24, 9, 8, 11, 10, 51, 53]
 
-makroKeys = [8, 9, 10, 11, 12, 13, 14, 15, 34, 35]
-
-sceneNames = ["src 1", "src 2", "src 3", "src 4", "src 5", "src 6", "src 7", "src 8", "src 9", "src 10"]
-
 clients = []
 display = [15, 15, 15, 0, 15]
 analog = []
@@ -32,19 +28,20 @@ lastPGM = 0
 curPRV = 0
 lastPRV = 0
 
-#event stuff
+#vent stuff
 def buttonOnEvent(button):
     print(button)
     Search = Query()
     result = bttcmd.search((Search.state == 1) & (Search.button == int(button)))
     if result:
         for line in result:
-            tcpclient.send(line["action"])
-    elif button in makroKeys:
-        x = 1
-        #Makros
-    try:
-        val = BTNLEDmap[0].index(button)
+            x = x
+            #tcpclient.send(line["action"])
+    #elif button in makroKeys:
+    #    x = 1
+    #    #Makros
+    try: 
+        val = BTNLEDmap[0].index(int(button))
         buslampone(BTNLEDmap[1][val])
     except:
         pass
@@ -58,18 +55,18 @@ def buslampone(led):
     except:
         pass
     try:
-        val = PVWled.index(led)
-        sendPanelMSG("b:" + ':'.join(map(str,PVWled)) + ":")
+        val = PRVled.index(led)
+        sendPanelMSG("b:" + ':'.join(map(str,PRVled)) + ":")
         sendPanelMSG("a:" + str(led) + ":")
     except:
         pass
     try:
-        val = PGMled.index(led)
+        val = KEYled.index(led)
         sendPanelMSG("b:" + ':'.join(map(str,KEYled)) + ":")
         sendPanelMSG("a:" + str(led) + ":")
     except:
         pass
-
+    
 def buttonOffEvent(button):
     print(button)
 
@@ -84,7 +81,7 @@ def analogEvent(address, value):
             sendPanelMSG("b:47:")
         else:
             sendPanelMSG("b:46:47:")
-
+    
 def setKEY(i):
     if i < 11:
         s = "b:"
@@ -92,18 +89,19 @@ def setKEY(i):
             if index != i-1:
                 s += str(v)
                 s += ":"
-        sendPanelMSG("a:%s:" % str(KEYled[i-1])) sendPanelMSG(s)
-
+        sendPanelMSG("a:%s:" % str(KEYled[i-1])) 
+        sendPanelMSG(s)
+    
 def setPRV(i):
     if i < 11:
         s = "b:"
         for index, v in enumerate(PRVled):
             if index != i-1:
                 s += str(v)
-                s += ":"
+                s += ":"        
         sendPanelMSG("a:%s:" % str(PRVled[i-1]))
         sendPanelMSG(s)
-
+    
 def setPGM(i):
     if i < 11:
         s = "b:"
@@ -113,7 +111,7 @@ def setPGM(i):
                 s += ":"
         sendPanelMSG("a:%s:" % str(PGMled[i-1]))
         sendPanelMSG(s)
-
+    
 
 def updateDisplayValue(value):
     lenght = len(str(value))
@@ -199,7 +197,7 @@ class Server(WebSocket):
         for client in clients:
                 if client[0] != self:
                     client[0].sendMessage(self.data)
-
+            
     def handleConnected(self):
         print(self.address, 'connected')
         newClient = [self, self.address, 0]
@@ -212,7 +210,7 @@ class Server(WebSocket):
                 clients.remove(client)
                 break
         print(self.address, 'disconnected')
-       
+
 #client stuff
 def ws_client_on_message(ws, message):
     jsn = json.loads(message)
@@ -237,13 +235,13 @@ def ws_client_on_message(ws, message):
                 sendPanelMSG("b:50:52:54:")
             elif jsn["transition-name"] == "Fade":
                 sendPanelMSG("a:50:")
-                sendPanelMSG("b:52:54:")
+                sendPanelMSG("b:52:54:")                
             elif jsn["transition-name"] == "Slide":
                 sendPanelMSG("a:52:")
-                sendPanelMSG("b:50:54:")
+                sendPanelMSG("b:50:54:")                
             elif jsn["transition-name"] == "Stinger":
                 sendPanelMSG("a:54:")
-                sendPanelMSG("b:50:52:")
+                sendPanelMSG("b:50:52:")                
         print(jsn)
 
 def ws_client_on_error(ws, error):
@@ -273,3 +271,4 @@ if __name__ == "__main__":
     #threading.Thread(target=client_start).start()
 
     #TODO: SET UP TCP CLIENT TO SEND ROSSTALK COMMANDS
+
