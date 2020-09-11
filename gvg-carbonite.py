@@ -2,9 +2,13 @@
 #gvg-carbonite.py  2020 Eric Adler
 #based on gvg.py by lebaston100
 
-import websocket, threading, json, time
+import websocket, threading, json, time, socket, sys
 from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
 from tinydb import TinyDB, Query
+
+carbonite_host = '127.0.0.1'
+carbonite_port = 7788
+listen_port = 1234
 
 db = TinyDB('gvg-carbonite.json')
 bttcmd = db.table('buttonCMD')
@@ -28,15 +32,20 @@ lastPGM = 0
 curPRV = 0
 lastPRV = 0
 
+sockconnected = False
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
 #vent stuff
 def buttonOnEvent(button):
     print(button)
     Search = Query()
-    result = bttcmd.search((Search.state == 1) & (Search.button == int(button)))
+    result = bttcmd.search(Search.button == int(button))
+    print(result)
     if result:
         for line in result:
-            x = x
-            #tcpclient.send(line["action"])
+            print(line["action"])
+            sock.send(bytes((line["action"] + '\n'),'ascii'))
+            print("socket sent")
     #elif button in makroKeys:
     #    x = 1
     #    #Makros
@@ -211,64 +220,28 @@ class Server(WebSocket):
                 break
         print(self.address, 'disconnected')
 
-#client stuff
-def ws_client_on_message(ws, message):
-    jsn = json.loads(message)
-    if "update-type" in jsn:
-        if jsn["update-type"] == "PreviewSceneChanged":
-            index = 12
-            try:
-                index = sceneNames.index(jsn["scene-name"])
-            except:
-                pass
-            setPRV(index + 1)
-        elif jsn["update-type"] == "SwitchScenes":
-            index = 12
-            try:
-                index = sceneNames.index(jsn["scene-name"])
-            except:
-                pass
-            updateDisplayValue(index + 1)
-            setPGM(index + 1)
-        elif jsn["update-type"] == "SwitchTransition":
-            if jsn["transition-name"] == "Cut":
-                sendPanelMSG("b:50:52:54:")
-            elif jsn["transition-name"] == "Fade":
-                sendPanelMSG("a:50:")
-                sendPanelMSG("b:52:54:")                
-            elif jsn["transition-name"] == "Slide":
-                sendPanelMSG("a:52:")
-                sendPanelMSG("b:50:54:")                
-            elif jsn["transition-name"] == "Stinger":
-                sendPanelMSG("a:54:")
-                sendPanelMSG("b:50:52:")                
-        print(jsn)
-
-def ws_client_on_error(ws, error):
-    print(error)
-
-def ws_client_on_close(ws):
-    print("### ws_client closed ###")
-
-def ws_client_on_open(ws):
-    print("### ws_client opened ###")
-
 def server_start():
     #while True:
     server.serveforever()
     print("server restart")
 
 def client_start():
-    #while True:
-    ws_client.run_forever() #()
+    print('connect %s : %s' % server_address, file=sys.stderr)
+    sock.connect(server_address)
+    time.sleep(2)
+    result = sock.send(bytes("SEND MESSAGE", 'ascii'))
+    print("result " + str(result))
+    #    data = sock.recv(16)
+    #    print(data, end = '')
     print("client restart")
 
 if __name__ == "__main__":
-    server = SimpleWebSocketServer('', 1234, Server)
+    server = SimpleWebSocketServer('', listen_port, Server)
     threading.Thread(target=server_start).start()
-    #ws_client = websocket.WebSocketApp("ws://192.168.1.174:4444", on_message = ws_client_on_message, on_error = ws_client_on_error, on_close = ws_client_on_close)
-    #ws_client.on_open = ws_client_on_open
-    #threading.Thread(target=client_start).start()
+    server_address = (carbonite_host, carbonite_port)
+    sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    #sock.bind(server_address)
+    threading.Thread(target=client_start).start()
 
     #TODO: SET UP TCP CLIENT TO SEND ROSSTALK COMMANDS
 
