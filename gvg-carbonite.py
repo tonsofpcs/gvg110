@@ -6,7 +6,7 @@ import websocket, threading, json, time, socket, sys
 from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
 from tinydb import TinyDB, Query
 
-carbonite_host = '127.0.0.1'
+carbonite_host = '192.168.1.43'
 carbonite_port = 7788
 listen_port = 1234
 
@@ -20,7 +20,7 @@ KEYbtn = [8, 9, 10, 11, 12, 13, 14, 15, 34, 35]
 BTNLEDmap = [[16, 17, 18, 19, 20, 21, 22, 23, 32, 33, 24, 25, 26, 27, 28, 29, 30, 31, 36, 37, 8, 9, 10, 11, 12, 13, 14, 15, 34, 35],
         [33, 35, 37, 39, 13, 15, 14, 12,  0, 2, 38, 36, 34, 32, 1, 3, 5, 7, 6 , 4, 30, 28, 26, 24, 9, 8, 11, 10, 51, 53]]
 PGMled = [33, 35, 37, 39, 13, 15, 14, 12, 0, 2]
-PRVled = [38, 36, 34, 32, 1, 3, 5, 7, 6, 4]
+PVWled = [38, 36, 34, 32, 1, 3, 5, 7, 6, 4]
 KEYled = [30, 28, 26, 24, 9, 8, 11, 10, 51, 53]
 
 clients = []
@@ -29,8 +29,8 @@ analog = []
 
 curPGM = 0
 lastPGM = 0
-curPRV = 0
-lastPRV = 0
+curPVW = 0
+lastPVW = 0
 
 sockconnected = False
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -44,6 +44,8 @@ def buttonOnEvent(button):
     if result:
         for line in result:
             print(line["action"])
+            if ((line["action"][0:6] == "MEAUTO") or (line["action"][0:5] == "MECUT")):
+                buslampswitch(curPGM,curPVW)
             sock.send(bytes((line["action"] + '\n'),'ascii'))
             print("socket sent")
     #elif button in makroKeys:
@@ -52,21 +54,30 @@ def buttonOnEvent(button):
     try: 
         val = BTNLEDmap[0].index(int(button))
         buslampone(BTNLEDmap[1][val])
+        print("current " + str(curPGM) + str(curPVW))
     except:
         pass
 
 
 def buslampone(led):
+    global curPGM
+    global curPVW
     try:
         val = PGMled.index(led)
         sendPanelMSG("b:" + ':'.join(map(str,PGMled)) + ":")
         sendPanelMSG("a:" + str(led) + ":")
+        curPGM = led
+        print("cur PGM : " + str(curPGM))
+        print("cur PVW : " + str(curPVW))
     except:
         pass
     try:
-        val = PRVled.index(led)
-        sendPanelMSG("b:" + ':'.join(map(str,PRVled)) + ":")
+        val = PVWled.index(led)
+        sendPanelMSG("b:" + ':'.join(map(str,PVWled)) + ":")
         sendPanelMSG("a:" + str(led) + ":")
+        curPVW = led
+        print("cur PGM : " + str(curPGM))
+        print("cur PVW : " + str(curPVW))
     except:
         pass
     try:
@@ -75,6 +86,27 @@ def buslampone(led):
         sendPanelMSG("a:" + str(led) + ":")
     except:
         pass
+
+def buslampswitch(PGMcur,PVWcur):
+    global curPGM
+    global curPVW
+    print(str(PGMcur) + " switch " + str(PVWcur))
+    try:
+        val = PGMled.index(PGMcur)
+        sendPanelMSG("b:" + ':'.join(map(str,PVWled)) + ":")
+        sendPanelMSG("a:" + str(PVWled[val]) + ":")
+        curPVW = PVWled[val]
+    except:
+        pass
+    try:
+        val = PVWled.index(PVWcur)
+        sendPanelMSG("b:" + ':'.join(map(str,PGMled)) + ":")
+        sendPanelMSG("a:" + str(PGMled[val]) + ":")
+        curPGM = PGMled[val]
+    except:
+        pass
+    print(str(curPGM) + " now " + str(curPVW))
+
     
 def buttonOffEvent(button):
     print(button)
@@ -101,14 +133,14 @@ def setKEY(i):
         sendPanelMSG("a:%s:" % str(KEYled[i-1])) 
         sendPanelMSG(s)
     
-def setPRV(i):
+def setPVW(i):
     if i < 11:
         s = "b:"
-        for index, v in enumerate(PRVled):
+        for index, v in enumerate(PVWled):
             if index != i-1:
                 s += str(v)
                 s += ":"        
-        sendPanelMSG("a:%s:" % str(PRVled[i-1]))
+        sendPanelMSG("a:%s:" % str(PVWled[i-1]))
         sendPanelMSG(s)
     
 def setPGM(i):
@@ -183,7 +215,7 @@ class Server(WebSocket):
                     print(client, "is now input")
                     display = [15, 15, 15, 0, 15]
                     setDisplay()
-                    setPRV(1)
+                    setPVW(1)
                     setPGM(1)
         if split[0] == "a":
             del split[0]
@@ -229,8 +261,8 @@ def client_start():
     print('connect %s : %s' % server_address, file=sys.stderr)
     sock.connect(server_address)
     time.sleep(2)
-    result = sock.send(bytes("SEND MESSAGE", 'ascii'))
-    print("result " + str(result))
+    #result = sock.send(bytes("SEND MESSAGE", 'ascii'))
+    #print("result " + str(result))
     #    data = sock.recv(16)
     #    print(data, end = '')
     print("client restart")
