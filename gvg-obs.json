@@ -1,1 +1,194 @@
-{"_default": {}, "buttonCMD": {"1": {"button": 24, "actionType": "obs-ws", "state": 1, "requestType": "SetPreviewScene", "action": "{\"request-type\" : \"SetPreviewScene\", \"message-id\" : \"1\",\"scene-name\" : \"src 1\"}"}, "2": {"button": 25, "actionType": "obs-ws", "state": 1, "requestType": "SetPreviewScene", "action": "{\"request-type\" : \"SetPreviewScene\", \"message-id\" : \"1\",\"scene-name\" : \"src 2\"}"}, "3": {"button": 26, "actionType": "obs-ws", "state": 1, "requestType": "SetPreviewScene", "action": "{\"request-type\" : \"SetPreviewScene\", \"message-id\" : \"1\",\"scene-name\" : \"src 3\"}"}, "4": {"button": 27, "actionType": "obs-ws", "state": 1, "requestType": "SetPreviewScene", "action": "{\"request-type\" : \"SetPreviewScene\", \"message-id\" : \"1\",\"scene-name\" : \"src 4\"}"}, "5": {"button": 28, "actionType": "obs-ws", "state": 1, "requestType": "SetPreviewScene", "action": "{\"request-type\" : \"SetPreviewScene\", \"message-id\" : \"1\",\"scene-name\" : \"src 5\"}"}, "6": {"button": 29, "actionType": "obs-ws", "state": 1, "requestType": "SetPreviewScene", "action": "{\"request-type\" : \"SetPreviewScene\", \"message-id\" : \"1\",\"scene-name\" : \"src 6\"}"}, "7": {"button": 30, "actionType": "obs-ws", "state": 1, "requestType": "SetPreviewScene", "action": "{\"request-type\" : \"SetPreviewScene\", \"message-id\" : \"1\",\"scene-name\" : \"src 7\"}"}, "8": {"button": 31, "actionType": "obs-ws", "state": 1, "requestType": "SetPreviewScene", "action": "{\"request-type\" : \"SetPreviewScene\", \"message-id\" : \"1\",\"scene-name\" : \"src 8\"}"}, "9": {"button": 36, "actionType": "obs-ws", "state": 1, "requestType": "SetPreviewScene", "action": "{\"request-type\" : \"SetPreviewScene\", \"message-id\" : \"1\",\"scene-name\" : \"src 9\"}"}, "10": {"button": 37, "actionType": "obs-ws", "state": 1, "requestType": "SetPreviewScene", "action": "{\"request-type\" : \"SetPreviewScene\", \"message-id\" : \"1\",\"scene-name\" : \"src 10\"}"}, "11": {"button": 16, "actionType": "obs-ws", "state": 1, "requestType": "SetCurrentScene", "action": "{\"request-type\" : \"SetCurrentScene\", \"message-id\" : \"1\",\"scene-name\" : \"src 1\"}"}, "12": {"button": 17, "actionType": "obs-ws", "state": 1, "requestType": "SetCurrentScene", "action": "{\"request-type\" : \"SetCurrentScene\", \"message-id\" : \"1\",\"scene-name\" : \"src 2\"}"}, "13": {"button": 18, "actionType": "obs-ws", "state": 1, "requestType": "SetCurrentScene", "action": "{\"request-type\" : \"SetCurrentScene\", \"message-id\" : \"1\",\"scene-name\" : \"src 3\"}"}, "14": {"button": 19, "actionType": "obs-ws", "state": 1, "requestType": "SetCurrentScene", "action": "{\"request-type\" : \"SetCurrentScene\", \"message-id\" : \"1\",\"scene-name\" : \"src 4\"}"}, "15": {"button": 20, "actionType": "obs-ws", "state": 1, "requestType": "SetCurrentScene", "action": "{\"request-type\" : \"SetCurrentScene\", \"message-id\" : \"1\",\"scene-name\" : \"src 5\"}"}, "16": {"button": 21, "actionType": "obs-ws", "state": 1, "requestType": "SetCurrentScene", "action": "{\"request-type\" : \"SetCurrentScene\", \"message-id\" : \"1\",\"scene-name\" : \"src 6\"}"}, "17": {"button": 22, "actionType": "obs-ws", "state": 1, "requestType": "SetCurrentScene", "action": "{\"request-type\" : \"SetCurrentScene\", \"message-id\" : \"1\",\"scene-name\" : \"src 7\"}"}, "18": {"button": 23, "actionType": "obs-ws", "state": 1, "requestType": "SetCurrentScene", "action": "{\"request-type\" : \"SetCurrentScene\", \"message-id\" : \"1\",\"scene-name\" : \"src 8\"}"}, "19": {"button": 32, "actionType": "obs-ws", "state": 1, "requestType": "SetCurrentScene", "action": "{\"request-type\" : \"SetCurrentScene\", \"message-id\" : \"1\",\"scene-name\" : \"src 9\"}"}, "20": {"button": 33, "actionType": "obs-ws", "state": 1, "requestType": "SetCurrentScene", "action": "{\"request-type\" : \"SetCurrentScene\", \"message-id\" : \"1\",\"scene-name\" : \"src 10\"}"}, "21": {"button": 38, "actionType": "obs-ws", "state": 1, "requestType": "TransitionToProgram", "action": "{\"request-type\" : \"TransitionToProgram\", \"message-id\" : \"1\",\"with-transition\" : {\"name\": \"Cut\"}}"}, "22": {"button": 39, "actionType": "obs-ws", "requestType": "TransitionToProgram", "state": 1, "action": "{\"request-type\" : \"TransitionToProgram\", \"message-id\" : \"1\",\"with-transition\" : {\"name\": \"Fade\", \"duration\": 500}}"}, "23": {"button": 51, "actionType": "obs-ws", "state": 1, "requestType": "TransitionToProgram", "action": "{\"request-type\" : \"TransitionToProgram\", \"message-id\" : \"1\",\"with-transition\" : {\"name\": \"Slide\", \"duration\": 1000}}"}, "24": {"button": 50, "actionType": "obs-ws", "requestType": "TransitionToProgram", "state": 1, "action": "{\"request-type\" : \"TransitionToProgram\", \"message-id\" : \"1\",\"with-transition\" : {\"name\": \"Stinger\"}}"}, "25": {"button": 48, "actionType": "obs-ws", "requestType": "TransitionToProgram", "state": 1, "action": "{\"request-type\" : \"TransitionToProgram\", \"message-id\" : \"1\",\"with-transition\" : {\"name\": \"Woosh\"}}"}}, "analogCMD": {}}
+{
+  "_default": {},
+  "config" : {
+    "obshost" : "192.168.1.158",
+    "obsport" : "4444"
+  },
+  "buttonCMD": {
+    "1": {
+      "button": 24,
+      "actionType": "obs-ws",
+      "state": 1,
+      "requestType": "SetPreviewScene",
+      "action": "{\"request-type\" : \"SetPreviewScene\", \"message-id\" : \"1\",\"scene-name\" : \"src 1\"}"
+    },
+    "2": {
+      "button": 25,
+      "actionType": "obs-ws",
+      "state": 1,
+      "requestType": "SetPreviewScene",
+      "action": "{\"request-type\" : \"SetPreviewScene\", \"message-id\" : \"1\",\"scene-name\" : \"src 2\"}"
+    },
+    "3": {
+      "button": 26,
+      "actionType": "obs-ws",
+      "state": 1,
+      "requestType": "SetPreviewScene",
+      "action": "{\"request-type\" : \"SetPreviewScene\", \"message-id\" : \"1\",\"scene-name\" : \"src 3\"}"
+    },
+    "4": {
+      "button": 27,
+      "actionType": "obs-ws",
+      "state": 1,
+      "requestType": "SetPreviewScene",
+      "action": "{\"request-type\" : \"SetPreviewScene\", \"message-id\" : \"1\",\"scene-name\" : \"src 4\"}"
+    },
+    "5": {
+      "button": 28,
+      "actionType": "obs-ws",
+      "state": 1,
+      "requestType": "SetPreviewScene",
+      "action": "{\"request-type\" : \"SetPreviewScene\", \"message-id\" : \"1\",\"scene-name\" : \"src 5\"}"
+    },
+    "6": {
+      "button": 29,
+      "actionType": "obs-ws",
+      "state": 1,
+      "requestType": "SetPreviewScene",
+      "action": "{\"request-type\" : \"SetPreviewScene\", \"message-id\" : \"1\",\"scene-name\" : \"src 6\"}"
+    },
+    "7": {
+      "button": 30,
+      "actionType": "obs-ws",
+      "state": 1,
+      "requestType": "SetPreviewScene",
+      "action": "{\"request-type\" : \"SetPreviewScene\", \"message-id\" : \"1\",\"scene-name\" : \"src 7\"}"
+    },
+    "8": {
+      "button": 31,
+      "actionType": "obs-ws",
+      "state": 1,
+      "requestType": "SetPreviewScene",
+      "action": "{\"request-type\" : \"SetPreviewScene\", \"message-id\" : \"1\",\"scene-name\" : \"src 8\"}"
+    },
+    "9": {
+      "button": 36,
+      "actionType": "obs-ws",
+      "state": 1,
+      "requestType": "SetPreviewScene",
+      "action": "{\"request-type\" : \"SetPreviewScene\", \"message-id\" : \"1\",\"scene-name\" : \"src 9\"}"
+    },
+    "10": {
+      "button": 37,
+      "actionType": "obs-ws",
+      "state": 1,
+      "requestType": "SetPreviewScene",
+      "action": "{\"request-type\" : \"SetPreviewScene\", \"message-id\" : \"1\",\"scene-name\" : \"src 10\"}"
+    },
+    "11": {
+      "button": 16,
+      "actionType": "obs-ws",
+      "state": 1,
+      "requestType": "SetCurrentScene",
+      "action": "{\"request-type\" : \"SetCurrentScene\", \"message-id\" : \"1\",\"scene-name\" : \"src 1\"}"
+    },
+    "12": {
+      "button": 17,
+      "actionType": "obs-ws",
+      "state": 1,
+      "requestType": "SetCurrentScene",
+      "action": "{\"request-type\" : \"SetCurrentScene\", \"message-id\" : \"1\",\"scene-name\" : \"src 2\"}"
+    },
+    "13": {
+      "button": 18,
+      "actionType": "obs-ws",
+      "state": 1,
+      "requestType": "SetCurrentScene",
+      "action": "{\"request-type\" : \"SetCurrentScene\", \"message-id\" : \"1\",\"scene-name\" : \"src 3\"}"
+    },
+    "14": {
+      "button": 19,
+      "actionType": "obs-ws",
+      "state": 1,
+      "requestType": "SetCurrentScene",
+      "action": "{\"request-type\" : \"SetCurrentScene\", \"message-id\" : \"1\",\"scene-name\" : \"src 4\"}"
+    },
+    "15": {
+      "button": 20,
+      "actionType": "obs-ws",
+      "state": 1,
+      "requestType": "SetCurrentScene",
+      "action": "{\"request-type\" : \"SetCurrentScene\", \"message-id\" : \"1\",\"scene-name\" : \"src 5\"}"
+    },
+    "16": {
+      "button": 21,
+      "actionType": "obs-ws",
+      "state": 1,
+      "requestType": "SetCurrentScene",
+      "action": "{\"request-type\" : \"SetCurrentScene\", \"message-id\" : \"1\",\"scene-name\" : \"src 6\"}"
+    },
+    "17": {
+      "button": 22,
+      "actionType": "obs-ws",
+      "state": 1,
+      "requestType": "SetCurrentScene",
+      "action": "{\"request-type\" : \"SetCurrentScene\", \"message-id\" : \"1\",\"scene-name\" : \"src 7\"}"
+    },
+    "18": {
+      "button": 23,
+      "actionType": "obs-ws",
+      "state": 1,
+      "requestType": "SetCurrentScene",
+      "action": "{\"request-type\" : \"SetCurrentScene\", \"message-id\" : \"1\",\"scene-name\" : \"src 8\"}"
+    },
+    "19": {
+      "button": 32,
+      "actionType": "obs-ws",
+      "state": 1,
+      "requestType": "SetCurrentScene",
+      "action": "{\"request-type\" : \"SetCurrentScene\", \"message-id\" : \"1\",\"scene-name\" : \"src 9\"}"
+    },
+    "20": {
+      "button": 33,
+      "actionType": "obs-ws",
+      "state": 1,
+      "requestType": "SetCurrentScene",
+      "action": "{\"request-type\" : \"SetCurrentScene\", \"message-id\" : \"1\",\"scene-name\" : \"src 10\"}"
+    },
+    "21": {
+      "button": 38,
+      "actionType": "obs-ws",
+      "state": 1,
+      "requestType": "TransitionToProgram",
+      "action": "{\"request-type\" : \"TransitionToProgram\", \"message-id\" : \"1\",\"with-transition\" : {\"name\": \"Cut\"}}"
+    },
+    "22": {
+      "button": 39,
+      "actionType": "obs-ws",
+      "requestType": "TransitionToProgram",
+      "state": 1,
+      "action": "{\"request-type\" : \"TransitionToProgram\", \"message-id\" : \"1\",\"with-transition\" : {\"name\": \"Fade\", \"duration\": 500}}"
+    },
+    "23": {
+      "button": 51,
+      "actionType": "obs-ws",
+      "state": 1,
+      "requestType": "TransitionToProgram",
+      "action": "{\"request-type\" : \"TransitionToProgram\", \"message-id\" : \"1\",\"with-transition\" : {\"name\": \"Slide\", \"duration\": 1000}}"
+    },
+    "24": {
+      "button": 50,
+      "actionType": "obs-ws",
+      "requestType": "TransitionToProgram",
+      "state": 1,
+      "action": "{\"request-type\" : \"TransitionToProgram\", \"message-id\" : \"1\",\"with-transition\" : {\"name\": \"Stinger\"}}"
+    },
+    "25": {
+      "button": 48,
+      "actionType": "obs-ws",
+      "requestType": "TransitionToProgram",
+      "state": 1,
+      "action": "{\"request-type\" : \"TransitionToProgram\", \"message-id\" : \"1\",\"with-transition\" : {\"name\": \"Woosh\"}}"
+    },
+    "26": {
+        "button": 49,
+        "actionType": "obs-ws",
+        "requestType": "TransitionToProgram",
+        "state": 1,
+        "action": "{\"request-type\" : \"TransitionToProgram\", \"message-id\" : \"1\",\"with-transition\" : {\"name\": \"Whoosh\"}}"
+      }  
+  },
+  "analogCMD": {
+
+  }
+}
