@@ -26,7 +26,7 @@ lastPGM = 0
 curPRV = 0
 lastPRV = 0
 
-#event stuff
+#Events
 def buttonOnEvent(button):
     print(button)
     Search = Query()
