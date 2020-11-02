@@ -193,23 +193,22 @@ def ws_client_on_message(ws, message):
             setPGM(index + 1)
         elif jsn["update-type"] == "SwitchTransition":
             if jsn["transition-name"] == "Cut":
-                sendPanelMSG("a:55:")
                 sendPanelMSG("b:50:52:54:48:49:")
             elif jsn["transition-name"] == "Fade":
                 sendPanelMSG("a:50:")
-                sendPanelMSG("b:52:54:55:48:49:")
+                sendPanelMSG("b:52:54:48:49:")
             elif jsn["transition-name"] == "Slide":
                 sendPanelMSG("a:52:")
-                sendPanelMSG("b:50:54:55:48:49:")
+                sendPanelMSG("b:50:54:48:49:")
             elif jsn["transition-name"] == "Stinger":
                 sendPanelMSG("a:54:")
-                sendPanelMSG("b:50:52:55:48:49:")
+                sendPanelMSG("b:50:52:48:49:")
             elif jsn["transition-name"] == "Whoosh":
                 sendPanelMSG("a:48:")
-                sendPanelMSG("b:50:52:54:55:49:")
+                sendPanelMSG("b:50:52:54:49:")
             elif jsn["transition-name"] == "Woosh":
                 sendPanelMSG("a:49:")
-                sendPanelMSG("b:50:52:54:55:48:")
+                sendPanelMSG("b:50:52:54:48:")
         print(jsn)
 
 def ws_client_on_error(ws, error):
