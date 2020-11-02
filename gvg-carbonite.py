@@ -232,9 +232,6 @@ class Server(WebSocket):
             for button in split:
                 buttonOffEvent(button)
             #button off
-        elif split[0] == "f":
-            updateDisplayValue(int(split[1]))
-            writeDisplay(self)
         for client in clients:
                 if client[0] != self:
                     client[0].sendMessage(self.data)
