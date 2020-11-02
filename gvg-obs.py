@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+#!/usr/bin/env python3
+#gvg-obs.py  2020 Eric Adler
+#based on gvg.py by lebaston100
 
 
 import websocket, threading, json, time
