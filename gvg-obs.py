@@ -40,6 +40,7 @@ def buttonOnEvent(button):
     if result:
         for line in result:
             action = line["action"]
+            acrion = action.replace("$keyer", keyer)
             if line["toggle"] >= 0:
                 toggleit = int(line["toggle"])
                 toggle[toggleit] = not(toggle[toggleit])

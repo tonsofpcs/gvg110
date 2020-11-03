@@ -186,7 +186,87 @@
         "requestType": "TransitionToProgram",
         "state": 1,
         "action": "{\"request-type\" : \"TransitionToProgram\", \"message-id\" : \"1\",\"with-transition\" : {\"name\": \"Whoosh\"}}"
-      }  
+    },
+    "27": {
+      "button": 8,
+      "actionType": "obs-ws",
+      "requestType": "SetSceneItemProperties",
+      "state": 1,
+      "toggle": 1,
+      "action": "{\"request-type\" : \"SetSceneItemProperties\", \"message-id\" : \"1\",\"scene-name\" : \"keyA\", \"item\" : \"key 1\", \"visible\" : \"$toggle$\" }"
+    },
+    "28": {
+      "button": 9,
+      "actionType": "obs-ws",
+      "requestType": "SetSceneItemProperties",
+      "state": 1,
+      "toggle": 2,
+      "action": "{\"request-type\" : \"SetSceneItemProperties\", \"message-id\" : \"1\",\"scene-name\" : \"keyA\", \"item\" : \"key 2\", \"visible\" : \"$toggle$\" }"
+    }, 
+    "29": {
+      "button": 10,
+      "actionType": "obs-ws",
+      "requestType": "SetSceneItemProperties",
+      "state": 1,
+      "toggle": 3,
+      "action": "{\"request-type\" : \"SetSceneItemProperties\", \"message-id\" : \"1\",\"scene-name\" : \"keyA\", \"item\" : \"key 3\", \"visible\" : \"$toggle$\" }"
+    }, 
+    "30": {
+      "button": 11,
+      "actionType": "obs-ws",
+      "requestType": "SetSceneItemProperties",
+      "state": 1,
+      "toggle": 4,
+      "action": "{\"request-type\" : \"SetSceneItemProperties\", \"message-id\" : \"1\",\"scene-name\" : \"keyA\", \"item\" : \"key 4\", \"visible\" : \"$toggle$\" }"
+    }, 
+    "31": {
+      "button": 12,
+      "actionType": "obs-ws",
+      "requestType": "SetSceneItemProperties",
+      "state": 1,
+      "toggle": 5,
+      "action": "{\"request-type\" : \"SetSceneItemProperties\", \"message-id\" : \"1\",\"scene-name\" : \"keyA\", \"item\" : \"key 5\", \"visible\" : \"$toggle$\" }"
+    }, 
+    "32": {
+      "button": 13,
+      "actionType": "obs-ws",
+      "requestType": "SetSceneItemProperties",
+      "state": 1,
+      "toggle": 6,
+      "action": "{\"request-type\" : \"SetSceneItemProperties\", \"message-id\" : \"1\",\"scene-name\" : \"keyA\", \"item\" : \"key 6\", \"visible\" : \"$toggle$\" }"
+    }, 
+    "33": {
+      "button": 14,
+      "actionType": "obs-ws",
+      "requestType": "SetSceneItemProperties",
+      "state": 1,
+      "toggle": 7,
+      "action": "{\"request-type\" : \"SetSceneItemProperties\", \"message-id\" : \"1\",\"scene-name\" : \"keyA\", \"item\" : \"key 7\", \"visible\" : \"$toggle$\" }"
+    }, 
+    "34": {
+      "button": 15,
+      "actionType": "obs-ws",
+      "requestType": "SetSceneItemProperties",
+      "state": 1,
+      "toggle": 8,
+      "action": "{\"request-type\" : \"SetSceneItemProperties\", \"message-id\" : \"1\",\"scene-name\" : \"keyA\", \"item\" : \"key 8\", \"visible\" : \"$toggle$\" }"
+    }, 
+    "35": {
+      "button": 34,
+      "actionType": "obs-ws",
+      "requestType": "SetSceneItemProperties",
+      "state": 1,
+      "toggle": 9,
+      "action": "{\"request-type\" : \"SetSceneItemProperties\", \"message-id\" : \"1\",\"scene-name\" : \"keyA\", \"item\" : \"key 9\", \"visible\" : \"$toggle$\" }"
+    }, 
+    "36": {
+      "button": 35,
+      "actionType": "obs-ws",
+      "requestType": "SetSceneItemProperties",
+      "state": 1,
+      "toggle": 4,
+      "action": "{\"request-type\" : \"SetSceneItemProperties\", \"message-id\" : \"1\",\"scene-name\" : \"keyA\", \"item\" : \"key 10\", \"visible\" : \"$toggle$\" }"
+    }
   },
   "analogCMD": {
 
