@@ -19,6 +19,9 @@ KEYled = [30, 28, 26, 24, 9, 8, 11, 10, 51, 53]
 makroKeys = [8, 9, 10, 11, 12, 13, 14, 15, 34, 35]
 
 sceneNames = ["src 1", "src 2", "src 3", "src 4", "src 5", "src 6", "src 7", "src 8", "src 9", "src 10"]
+keyNames = ["key 1", "key 2", "key 3", "key 4", "key 5", "key 6", "key 7", "key 8", "key 9", "key 10"]
+keyer = "keyA"
+toggle = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
 clients = []
 display = [15, 15, 15, 0, 15]
@@ -36,8 +39,13 @@ def buttonOnEvent(button):
     result = bttcmd.search((Search.state == 1) & (Search.button == int(button)))
     if result:
         for line in result:
+            action = line["action"]
+            if line["toggle"] >= 0:
+                toggleit = int(line["toggle"])
+                toggle[toggleit] = not(toggle[toggleit])
+                action = action.replace("$toggle$",toggle[toggleit])
             if line["actionType"] == "obs-ws":
-                ws_client.send(line["action"])
+                ws_client.send(action)
     elif button in makroKeys:
         x = 1
 
@@ -75,6 +83,13 @@ def setPGM(i):
                 s += ":"
         sendPanelMSG("a:%s:" % str(PGMled[i-1]))
         sendPanelMSG(s)
+
+def setDSK(i, state):
+    if i < 11:
+        if state:
+            sendPanelMSG("a:%s:" % str(KEYled[i-1])) #on
+        else: 
+            sendPanelMSG("a:%s:" % str(KEYled[i-1])) #off
 
 
 def updateDisplayValue(value):
@@ -183,6 +198,15 @@ def ws_client_on_message(ws, message):
             except:
                 pass
             setPRV(index + 1)
+        elif jsn["update-type"] == "SceneItemVisibilityChanged":
+            if jsn["scene-name"] == keyer:
+                index = 12
+                try:
+                    index = keyNames.index(jsn["item-name"])
+                    state = bool(jsn["item-visible"])
+                except:
+                    pass
+            setDSK(index + 1)
         elif jsn["update-type"] == "SwitchScenes":
             index = 12
             try:
