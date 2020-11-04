@@ -11,7 +11,7 @@ from tinydb import TinyDB, Query
 db = TinyDB('gvg-obs.json')
 jsnconfiglu = db.table('config')
 jsnquery = Query()
-jsnconfig = jsnquery.search()
+jsnconfig = jsnquery.search()[0]
 bttcmd = db.table('buttonCMD')
 analogcmd = db.table('analogCMD')
 
