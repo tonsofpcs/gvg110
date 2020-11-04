@@ -54,7 +54,7 @@ def buttonOnEvent(button):
                 print("toggleit: " + str(toggleit) + "  -  " + str(toggle[toggleit]))
                 toggle[toggleit] = not(toggle[toggleit])
                 print("toggleit: " + str(toggleit) + "  -  " + str(toggle[toggleit]))
-                action = action.replace("$toggle$",str(toggle[toggleit]))
+                action = action.replace("$toggle$",str(int(toggle[toggleit])))
                 print("toggled action: " + action)
             print(line["actionType"])
             if line["actionType"] == "obs-ws":
