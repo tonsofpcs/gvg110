@@ -49,9 +49,12 @@ def buttonOnEvent(button):
                 toggleit = int(line["toggle"])
                 toggle[toggleit] = not(toggle[toggleit])
                 action = action.replace("$toggle$",toggle[toggleit])
+                print("toggled action: " + action)
             if line["actionType"] == "obs-ws":
+                print("sending action: " + action)
                 ws_client.send(action)
                 print("action sent")
+            print("post-do action: " + action)
     elif button in makroKeys:
         x = 1
 
