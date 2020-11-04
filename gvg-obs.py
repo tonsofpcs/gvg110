@@ -201,6 +201,7 @@ def ws_client_on_message(ws, message):
                 pass
             setPRV(index + 1)
         elif jsn["update-type"] == "SceneItemVisibilityChanged":
+            print(jsn)
             if jsn["scene-name"] == keyer:
                 index = 12
                 try:
