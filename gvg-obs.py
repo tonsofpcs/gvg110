@@ -41,13 +41,13 @@ def buttonOnEvent(button):
         print(result)
         for line in result:
             action = line["action"]
+            print("action: " + action)
             action = action.replace("$keyer$", keyer)
             if line["toggle"] >= 0:
                 toggleit = int(line["toggle"])
                 toggle[toggleit] = not(toggle[toggleit])
                 action = action.replace("$toggle$",toggle[toggleit])
             if line["actionType"] == "obs-ws":
-                print("action: " + action)
                 ws_client.send(action)
                 print("action sent")
     elif button in makroKeys:
