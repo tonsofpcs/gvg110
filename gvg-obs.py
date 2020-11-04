@@ -47,9 +47,11 @@ def buttonOnEvent(button):
             if line["toggle"] >= 0:
                 print("toggling!")
                 toggleit = int(line["toggle"])
+                print("toggleit: " + str(toggleit))
                 toggle[toggleit] = not(toggle[toggleit])
                 action = action.replace("$toggle$",toggle[toggleit])
                 print("toggled action: " + action)
+            print("actionType: " + line["actionType"])
             if line["actionType"] == "obs-ws":
                 print("sending action: " + action)
                 ws_client.send(action)
