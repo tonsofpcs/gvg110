@@ -43,7 +43,9 @@ def buttonOnEvent(button):
             action = line["action"]
             print("action: " + action)
             action = action.replace("$keyer$", keyer)
+            print("post-keyer action: " + action)
             if line["toggle"] >= 0:
+                print("toggling!")
                 toggleit = int(line["toggle"])
                 toggle[toggleit] = not(toggle[toggleit])
                 action = action.replace("$toggle$",toggle[toggleit])
