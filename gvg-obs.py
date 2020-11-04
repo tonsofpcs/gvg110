@@ -89,9 +89,11 @@ def setPGM(i):
 def setDSK(i, state):
     if i < 11:
         if state:
+            print("a:%s:" % str(KEYled[i-1]))
             sendPanelMSG("a:%s:" % str(KEYled[i-1]))
         else: 
-            sendPanelMSG("a:%s:" % str(KEYled[i-1]))
+            print("b:%s:" % str(KEYled[i-1]))
+            sendPanelMSG("b:%s:" % str(KEYled[i-1]))
 
 
 def updateDisplayValue(value):
