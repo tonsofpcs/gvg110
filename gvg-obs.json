@@ -264,7 +264,7 @@
       "actionType": "obs-ws",
       "requestType": "SetSceneItemProperties",
       "state": 1,
-      "toggle": 4,
+      "toggle": 10,
       "action": "{\"request-type\" : \"SetSceneItemProperties\", \"message-id\" : \"1\", \"scene-name\" : \"keyA\", \"item\" : \"key 10\", \"visible\" : \"$toggle$\" }"
     }
   },
