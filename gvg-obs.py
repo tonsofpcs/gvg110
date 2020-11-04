@@ -217,7 +217,7 @@ def ws_client_on_message(ws, message):
                     state = bool(jsn["item-visible"])
                 except:
                     pass
-            setDSK(index + 1)
+            setDSK(index + 1, state)
         elif jsn["update-type"] == "SceneItemTransformChanged":
             print(jsn)
             if jsn["scene-name"] == keyer:
@@ -227,7 +227,7 @@ def ws_client_on_message(ws, message):
                     state = bool(jsn["visible"])
                 except:
                     pass
-            setDSK(index + 1)
+            setDSK(index + 1, state)
         elif jsn["update-type"] == "SwitchScenes":
             index = 12
             try:
