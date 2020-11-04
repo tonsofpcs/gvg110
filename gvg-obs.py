@@ -40,7 +40,6 @@ def buttonOnEvent(button):
     if result:
         print(result)
         for line in result:
-            print(line["action"])
             action = line["action"]
             action = action.replace("$keyer$", keyer)
             try:
@@ -49,12 +48,9 @@ def buttonOnEvent(button):
                     toggle[toggleit] = not(toggle[toggleit])
                     action = action.replace("$toggle$",str(toggle[toggleit]).lower())
             except:
-                print(line["actionType"])
+                pass
             if line["actionType"] == "obs-ws":
-                print("sending action: " + action)
                 ws_client.send(action)
-                print("action sent")
-            print("post-do action: " + action)
     elif button in makroKeys:
         x = 1
 
@@ -220,16 +216,16 @@ def ws_client_on_message(ws, message):
                 except:
                     pass
             setDSK(index + 1, state)
-        elif jsn["update-type"] == "SceneItemTransformChanged":
-            print(jsn)
-            if jsn["scene-name"] == keyer:
-                index = 12
-                try:
-                    index = keyNames.index(jsn["item-name"])
-                    state = bool(jsn["visible"])
-                except:
-                    pass
-            setDSK(index + 1, state)
+        # elif jsn["update-type"] == "SceneItemTransformChanged":
+        #     print(jsn)
+        #     if jsn["scene-name"] == keyer:
+        #         index = 12
+        #         try:
+        #             index = keyNames.index(jsn["item-name"])
+        #             state = bool(jsn["visible"])
+        #         except:
+        #             pass
+        #     setDSK(index + 1, state)
         elif jsn["update-type"] == "SwitchScenes":
             index = 12
             try:
