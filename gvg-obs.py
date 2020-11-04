@@ -42,6 +42,8 @@ def buttonOnEvent(button):
         for line in result:
             print("LINE:")
             print(line)
+            print(line["actionType"])
+            print(line["action"])
             action = line["action"]
             print("action: " + action)
             action = action.replace("$keyer$", keyer)
