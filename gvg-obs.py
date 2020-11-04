@@ -38,6 +38,7 @@ def buttonOnEvent(button):
     Search = Query()
     result = bttcmd.search((Search.state == 1) & (Search.button == int(button)))
     if result:
+        print(result)
         for line in result:
             action = line["action"]
             acrion = action.replace("$keyer", keyer)
@@ -88,9 +89,9 @@ def setPGM(i):
 def setDSK(i, state):
     if i < 11:
         if state:
-            sendPanelMSG("a:%s:" % str(KEYled[i-1])) #on
+            sendPanelMSG("a:%s:" % str(KEYled[i-1]))
         else: 
-            sendPanelMSG("a:%s:" % str(KEYled[i-1])) #off
+            sendPanelMSG("a:%s:" % str(KEYled[i-1]))
 
 
 def updateDisplayValue(value):
