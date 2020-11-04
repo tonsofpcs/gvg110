@@ -9,7 +9,9 @@ from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
 from tinydb import TinyDB, Query
 
 db = TinyDB('gvg-obs.json')
-jsnconfig = db.table('config')
+jsnconfiglu = db.table('config')
+jsnquery = Query()
+jsnconfig = jsnquery.search()
 bttcmd = db.table('buttonCMD')
 analogcmd = db.table('analogCMD')
 
