@@ -51,8 +51,9 @@ def buttonOnEvent(button):
             if line["toggle"] >= 0:
                 print("toggling!")
                 toggleit = int(line["toggle"])
-                print("toggleit: " + str(toggleit))
+                print("toggleit: " + str(toggleit) + "  -  " + str(toggle[toggleit]))
                 toggle[toggleit] = not(toggle[toggleit])
+                print("toggleit: " + str(toggleit) + "  -  " + str(toggle[toggleit]))
                 action = action.replace("$toggle$",toggle[toggleit])
                 print("toggled action: " + action)
             print(line["actionType"])
