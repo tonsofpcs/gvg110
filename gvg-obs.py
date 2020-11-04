@@ -9,6 +9,7 @@ from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
 from tinydb import TinyDB, Query
 
 db = TinyDB('gvg-obs.json')
+jsnconfig = db.table('config')
 bttcmd = db.table('buttonCMD')
 analogcmd = db.table('analogCMD')
 
@@ -263,6 +264,6 @@ def client_start():
 if __name__ == "__main__":
     server = SimpleWebSocketServer('', 1234, Server)
     threading.Thread(target=server_start).start()
-    ws_client = websocket.WebSocketApp("ws://192.168.1.158:4444", on_message = ws_client_on_message, on_error = ws_client_on_error, on_close = ws_client_on_close)
+    ws_client = websocket.WebSocketApp("ws://" + jsnconfig["obshost"] + ":" + jsnconfig["obsport"], on_message = ws_client_on_message, on_error = ws_client_on_error, on_close = ws_client_on_close)
     ws_client.on_open = ws_client_on_open
     threading.Thread(target=client_start).start()
