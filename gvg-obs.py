@@ -43,10 +43,11 @@ def buttonOnEvent(button):
             print(line["action"])
             action = line["action"]
             action = action.replace("$keyer$", keyer)
-            if line["toggle"] >= 0:
-                toggleit = int(line["toggle"])
-                toggle[toggleit] = not(toggle[toggleit])
-                action = action.replace("$toggle$",str(toggle[toggleit]).lower())
+            try:
+                if line["toggle"] >= 0:
+                    toggleit = int(line["toggle"])
+                    toggle[toggleit] = not(toggle[toggleit])
+                    action = action.replace("$toggle$",str(toggle[toggleit]).lower())
             print(line["actionType"])
             if line["actionType"] == "obs-ws":
                 print("sending action: " + action)
