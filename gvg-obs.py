@@ -185,6 +185,7 @@ class Server(WebSocket):
                     client[0].sendMessage(self.data)
 
     def handleConnected(self):
+        global connstat
         print(self.address, 'connected')
         newClient = [self, self.address, 0]
         clients.append(newClient)
@@ -262,10 +263,12 @@ def ws_client_on_error(ws, error):
     print(error)
 
 def ws_client_on_close(ws):
+    global connstat
     print("### ws_client closed ###")
     connstat = False
 
 def ws_client_on_open(ws):
+    global connstat
     print("### ws_client opened ###")
     connstat = True
 
