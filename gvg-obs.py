@@ -32,6 +32,8 @@ lastPGM = 0
 curPRV = 0
 lastPRV = 0
 
+connstat = 0
+
 #Events
 def buttonOnEvent(button):
     print(button)
@@ -187,6 +189,8 @@ class Server(WebSocket):
         newClient = [self, self.address, 0]
         clients.append(newClient)
         #print(clients)
+        if not(connstat):
+            threading.Thread(target=client_start).start()
 
     def handleClose(self):
         for client in clients:
@@ -259,9 +263,11 @@ def ws_client_on_error(ws, error):
 
 def ws_client_on_close(ws):
     print("### ws_client closed ###")
+    connstat = False
 
 def ws_client_on_open(ws):
     print("### ws_client opened ###")
+    connstat = True
 
 def server_start():
     #while True:
