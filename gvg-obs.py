@@ -21,6 +21,8 @@ makroKeys = [8, 9, 10, 11, 12, 13, 14, 15, 34, 35]
 sceneNames = ["src 1", "src 2", "src 3", "src 4", "src 5", "src 6", "src 7", "src 8", "src 9", "src 10"]
 keyNames = ["key 1", "key 2", "key 3", "key 4", "key 5", "key 6", "key 7", "key 8", "key 9", "key 10"]
 keyer = "keyA"
+keyer2 = "keyB"
+
 toggle = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
 clients = []
@@ -44,6 +46,7 @@ def buttonOnEvent(button):
         for line in result:
             action = line["action"]
             action = action.replace("$keyer$", keyer)
+            action = action.replace("$keyer2$", keyer2)
             try:
                 if line["toggle"] >= 0:
                     toggleit = int(line["toggle"])
@@ -213,7 +216,7 @@ def ws_client_on_message(ws, message):
             setPRV(index + 1)
         elif jsn["update-type"] == "SceneItemVisibilityChanged":
             print(jsn)
-            if jsn["scene-name"] == keyer:
+            if (jsn["scene-name"] == keyer) or (jsn["scene-name"] == keyer2):
                 index = 12
                 try:
                     index = keyNames.index(jsn["item-name"])
