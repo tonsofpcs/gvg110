@@ -24,6 +24,7 @@ keyer = "keyA"
 keyer2 = "keyB"
 
 toggle = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+maxinvert = 0
 
 clients = []
 display = [15, 15, 15, 0, 15]
@@ -33,6 +34,8 @@ curPGM = 0
 lastPGM = 0
 curPRV = 0
 lastPRV = 0
+
+invertnext = 0
 
 connstat = 0
 
@@ -68,11 +71,22 @@ def analogEvent(address, value):
         if value < 3:
             sendPanelMSG("b:46:")
             sendPanelMSG("a:47:")
+            value = 0
         elif value > 1019:
             sendPanelMSG("a:46:")
             sendPanelMSG("b:47:")
+            value = 1023
         else:
+            invertnext = 1
             sendPanelMSG("b:46:47:")
+        if maxinvert:
+            value = (value / 1024)
+        else:
+            value = ((1-value) / 1024)
+        #TODO: Code to set t-bar value
+        if (value == 0) and invertnext:
+            maxinvert = not(maxinvert)
+            invertnext = 0
 
 def setPRV(i):
     if i < 11:
