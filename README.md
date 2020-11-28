@@ -14,7 +14,10 @@ I've connected an arduino and installed code on it from <https://github.com/leba
 
 Thanks to @lebaston100 for all the helpful information!
 
-My control panel has known issues with the T-bar and with just this configuration described above, in testing, I intermittently receive key details on the websocket server (websockettest.py) but regularly received the key press / unpress commands without key details.  
+~~My control panel has known issues with the T-bar and with just this configuration described above, in testing, I intermittently receive key details on the websocket server (websockettest.py) but regularly received the key press / unpress commands without key details.  ~~
+T-bar fixed!  Changed spring pressure to press towards the potentiometer instead of away from it (likely spring fatigue over the years).  Now to figure out what to do with it...
+
+
 After discussiong with lebaston100 and investigating I found a code issue.  I believe the changes in Arduino compiler have made it such that for loop initialization of variables is skipped unless a value is assigned or perhaps there's some change in how memory is mapped when variables are defined.  
 In either case, setting the for loops to start with (int i=0; instead of (int i; makes it all happy.  
 Fixed code was posted as a pull request against the original and merged in.  
