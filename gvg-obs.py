@@ -83,8 +83,12 @@ def analogEvent(address, value):
             value = (value / 1024)
         else:
             value = ((1-value) / 1024)
+        action = '{"request-type" : "SetTBarPosition", "message-id" : "2", "position" : "%s", "releasee" : "false"}' % value
+        ws_client.send(action)
         #TODO: Code to set t-bar value
         if (value == 0) and invertnext:
+            action = '{"request-type" : "ReleaseTBar", "message-id" : "3"}' % value
+            ws_client.send(action)
             maxinvert = not(maxinvert)
             invertnext = 0
 
