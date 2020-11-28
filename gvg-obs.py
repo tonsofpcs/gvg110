@@ -66,6 +66,7 @@ def buttonOffEvent(button):
     print(button)
 
 def analogEvent(address, value):
+    global maxinvert
     print(address, value)
     if address == 2: #Tbar
         if value < 3:
@@ -306,6 +307,6 @@ def client_start():
 if __name__ == "__main__":
     server = SimpleWebSocketServer('', 1234, Server)
     threading.Thread(target=server_start).start()
-    ws_client = websocket.WebSocketApp("ws://192.168.1.158:4444", on_message = ws_client_on_message, on_error = ws_client_on_error, on_close = ws_client_on_close)
+    ws_client = websocket.WebSocketApp("ws://192.168.1.126:4444", on_message = ws_client_on_message, on_error = ws_client_on_error, on_close = ws_client_on_close)
     ws_client.on_open = ws_client_on_open
     threading.Thread(target=client_start).start()
