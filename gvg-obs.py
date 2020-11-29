@@ -67,6 +67,7 @@ def buttonOffEvent(button):
 
 def analogEvent(address, value):
     global maxinvert
+    global invertnext
     print(address, value)
     if address == 2: #Tbar
         if value < 3:
@@ -83,15 +84,18 @@ def analogEvent(address, value):
         if maxinvert:
             value = (value / 1024)
         else:
-            value = ((1-value) / 1024)
-        action = '{"request-type" : "SetTBarPosition", "message-id" : "2", "position" : "%s", "releasee" : "false"}' % value
+            value = 1-((value) / 1024)
+        action = '{"request-type" : "SetTBarPosition", "message-id" : "2", "position" : %s, "release" : false}' % value
+        print(action)
         ws_client.send(action)
         #TODO: Code to set t-bar value
         if (value == 0) and invertnext:
             action = '{"request-type" : "ReleaseTBar", "message-id" : "3"}' % value
+            print(action)
             ws_client.send(action)
             maxinvert = not(maxinvert)
             invertnext = 0
+
 
 def setPRV(i):
     if i < 11:
