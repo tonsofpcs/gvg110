@@ -150,14 +150,14 @@
       "actionType": "obs-ws",
       "state": 1,
       "requestType": "TransitionToProgram",
-      "action": "{\"request-type\" : \"TransitionToProgram\", \"message-id\" : \"1\", \"with-transition\" : {\"name\": \"Cut\"}}"
+      "action": "{\"request-type\" : \"TransitionToProgram\", \"message-id\" : \"4\", \"with-transition\" : {\"name\": \"Cut\"}}"
     },
     "22": {
       "button": 38,
       "actionType": "obs-ws",
       "state": 1,
       "requestType": "SetCurrentTransition",
-      "action": "{\"request-type\" : \"SetCurrentTransition\", \"message-id\" : \"1\", \"transition-name\": \"Fade\"}"
+      "action": "{\"request-type\" : \"SetCurrentTransition\", \"message-id\" : \"5\", \"transition-name\": \"Fade\"}"
     },
     "23": {
       "button": 39,
