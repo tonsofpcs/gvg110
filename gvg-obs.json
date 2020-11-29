@@ -153,7 +153,7 @@
       "action": "{\"request-type\" : \"TransitionToProgram\", \"message-id\" : \"4\", \"with-transition\" : {\"name\": \"Cut\"}}"
     },
     "22": {
-      "button": 38,
+      "button": 999,
       "actionType": "obs-ws",
       "state": 1,
       "requestType": "SetCurrentTransition",
