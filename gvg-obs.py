@@ -90,7 +90,7 @@ def analogEvent(address, value):
         ws_client.send(action)
         #TODO: Code to set t-bar value
         if (value == 0) and invertnext:
-            action = '{"request-type" : "ReleaseTBar", "message-id" : "3"}' % value
+            action = '{"request-type" : "ReleaseTBar", "message-id" : "3"}'
             print(action)
             ws_client.send(action)
             maxinvert = not(maxinvert)
