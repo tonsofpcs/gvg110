@@ -157,36 +157,36 @@
       "actionType": "obs-ws",
       "requestType": "TransitionToProgram",
       "state": 1,
-      "action": "{\"request-type\" : \"TransitionToProgram\", \"message-id\" : \"1\", \"with-transition\" : {\"name\": \"Fade\", \"duration\": 500}}"
+      "action": "{\"request-type\" : \"TransitionToProgram\", \"message-id\" : \"1\"}"
     },
     "23": {
       "button": 51,
       "actionType": "obs-ws",
       "state": 1,
       "requestType": "TransitionToProgram",
-      "action": "{\"request-type\" : \"TransitionToProgram\", \"message-id\" : \"1\", \"with-transition\" : {\"name\": \"Slide\", \"duration\": 1000}}"
+      "action": "{\"request-type\" : \"SetCurrentTransition\", \"message-id\" : \"1\", \"transition-name\": \"Slide\"}"
     },
     "24": {
       "button": 50,
       "actionType": "obs-ws",
       "requestType": "TransitionToProgram",
       "state": 1,
-      "action": "{\"request-type\" : \"TransitionToProgram\", \"message-id\" : \"1\", \"with-transition\" : {\"name\": \"Stinger\"}}"
+      "action": "{\"request-type\" : \"SetCurrentTransition\", \"message-id\" : \"1\", \"transition-name\": \"Fade\"}"
     },
     "25": {
       "button": 48,
       "actionType": "obs-ws",
       "requestType": "TransitionToProgram",
       "state": 1,
-      "action": "{\"request-type\" : \"TransitionToProgram\", \"message-id\" : \"1\", \"with-transition\" : {\"name\": \"Woosh\"}}"
+      "action": "{\"request-type\" : \"SetCurrentTransition\", \"message-id\" : \"1\", \"transition-name\": \"Woosh\"}}"
     },
     "26": {
         "button": 49,
         "actionType": "obs-ws",
         "requestType": "TransitionToProgram",
         "state": 1,
-        "action": "{\"request-type\" : \"TransitionToProgram\", \"message-id\" : \"1\", \"with-transition\" : {\"name\": \"Whoosh\"}}"
-    },
+        "action": "{\"request-type\" : \"SetCurrentTransition\", \"message-id\" : \"1\", \"transition-name\": \"Stinger\"}}"
+      },
     "27": {
       "button": 8,
       "actionType": "obs-ws",
