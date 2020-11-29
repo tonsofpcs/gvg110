@@ -163,29 +163,29 @@
       "button": 51,
       "actionType": "obs-ws",
       "state": 1,
-      "requestType": "TransitionToProgram",
+      "requestType": "SetCurrentTransition",
       "action": "{\"request-type\" : \"SetCurrentTransition\", \"message-id\" : \"1\", \"transition-name\": \"Slide\"}"
     },
     "24": {
       "button": 50,
       "actionType": "obs-ws",
-      "requestType": "TransitionToProgram",
+      "requestType": "SetCurrentTransition",
       "state": 1,
       "action": "{\"request-type\" : \"SetCurrentTransition\", \"message-id\" : \"1\", \"transition-name\": \"Fade\"}"
     },
     "25": {
       "button": 48,
       "actionType": "obs-ws",
-      "requestType": "TransitionToProgram",
+      "requestType": "SetCurrentTransition",
       "state": 1,
-      "action": "{\"request-type\" : \"SetCurrentTransition\", \"message-id\" : \"1\", \"transition-name\": \"Woosh\"}}"
+      "action": "{\"request-type\" : \"SetCurrentTransition\", \"message-id\" : \"1\", \"transition-name\": \"Woosh\"}"
     },
     "26": {
         "button": 49,
         "actionType": "obs-ws",
-        "requestType": "TransitionToProgram",
+        "requestType": "SetCurrentTransition",
         "state": 1,
-        "action": "{\"request-type\" : \"SetCurrentTransition\", \"message-id\" : \"1\", \"transition-name\": \"Stinger\"}}"
+        "action": "{\"request-type\" : \"SetCurrentTransition\", \"message-id\" : \"1\", \"transition-name\": \"Stinger\"}"
       },
     "27": {
       "button": 8,
