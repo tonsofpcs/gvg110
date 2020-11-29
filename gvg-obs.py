@@ -82,19 +82,18 @@ def analogEvent(address, value):
             invertnext = 1
             sendPanelMSG("b:46:47:")
         if maxinvert:
-            value = (value / 1024)
+            value = (value / 1023)
         else:
-            value = 1-((value) / 1024)
-        action = '{"request-type" : "SetTBarPosition", "message-id" : "2", "position" : %s, "release" : false}' % value
+            value = 1-((value) / 1023)
+        if value == 1:
+            action = '{"request-type" : "ReleaseTBar", "message-id" : "3"}'
+            maxinvert = not(maxinvert)
+            invertnext = 0
+        else:
+            action = '{"request-type" : "SetTBarPosition", "message-id" : "2", "position" : %s, "release" : false}' % value
         print(action)
         ws_client.send(action)
         #TODO: Code to set t-bar value
-        if (value == 0) and invertnext:
-            action = '{"request-type" : "ReleaseTBar", "message-id" : "3"}'
-            print(action)
-            ws_client.send(action)
-            maxinvert = not(maxinvert)
-            invertnext = 0
 
 
 def setPRV(i):
