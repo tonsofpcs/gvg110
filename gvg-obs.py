@@ -270,10 +270,10 @@ def ws_client_on_message(ws, message):
                 sendPanelMSG("b:50:54:48:49:")
             elif jsn["transition-name"] == "Stinger":
                 sendPanelMSG("a:48:50:")
-                sendPanelMSG("b:52:48:54:")
+                sendPanelMSG("b:52:49:54:")
             elif jsn["transition-name"] == "Woosh":
                 sendPanelMSG("a:49:50:")
-                sendPanelMSG("b:52:54:49:")
+                sendPanelMSG("b:52:54:48:")
         print(jsn)
 
 def ws_client_on_error(ws, error):
