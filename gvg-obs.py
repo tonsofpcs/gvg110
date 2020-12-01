@@ -85,6 +85,8 @@ def analogEvent(address, value):
         if value == 1:
             action = '{"request-type" : "ReleaseTBar", "message-id" : "3"}'
             maxinvert = not(maxinvert)
+        elif value == 0:
+            action = '{"request-type" : "ReleaseTBar", "message-id" : "3"}'
         else:
             action = '{"request-type" : "SetTBarPosition", "message-id" : "2", "position" : %s, "release" : false}' % value
         ws_client.send(action)
