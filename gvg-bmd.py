@@ -48,8 +48,10 @@ def buttonOnEvent(button):
     if result:
         print(result)
         for line in result:
-            bmdrequest = line["requestType"]
-            bmddata = line["data"]
+            bmdrequest = bytes(line["requestType"],'ascii')
+            bmddatalen = line["length"]
+            bmddata = line["data"].to_bytes(bmddatalen)
+            print("BMD Data: %s" % bmddata)
             if line["actionType"] == "bmd-atem":
                 bmdsend(bmdrequest, bmddata)
     elif button in makroKeys:
@@ -223,7 +225,7 @@ class Server(WebSocket):
 #client stuff
 def bmdsend(command, data):
     print("bmdsend")
-    sendmsg = bytes(command,'ascii') + bytes(data)
+    sendmsg = command + data
     print(sendmsg)
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     sock.sendto(sendmsg, (bmdhost, bmdport))
