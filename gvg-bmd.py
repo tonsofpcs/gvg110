@@ -296,11 +296,6 @@ def ws_client_on_open(ws):
     print("### ws_client opened ###")
     connstat = True
 
-def server_start():
-    #while True:
-    server.serveforever()
-    print("server restart")
-
 def client_start():
     #while True:
     ws_client.run_forever() #()
