@@ -224,6 +224,7 @@ def bmdsend(command, data):
     sock.sendto(message, (bmdhost, bmdport))
 
 def ws_client_on_message(ws, message):
+    print("ws_client_on_message")
     jsn = json.loads(message)
     if "update-type" in jsn:
         if jsn["update-type"] == "PreviewSceneChanged":
@@ -279,11 +280,13 @@ def ws_client_on_message(ws, message):
         print(jsn)
 
 def server_start():
+    print("server start")
     #while True:
     server.serveforever()
     print("server restart")
 
 def ws_client_on_error(ws, error):
+    print("ws_client_on_error")
     print(error)
 
 def ws_client_on_close(ws):
@@ -298,6 +301,7 @@ def ws_client_on_open(ws):
 
 def client_start():
     #while True:
+    print("client_start")
     ws_client.run_forever() #()
     print("client restart")
 
