@@ -41,6 +41,7 @@ obsport = configdb.all()[0].get("obsport")
 
 #Events
 def buttonOnEvent(button):
+    print("ButtonOnEvent")
     print(button)
     Search = Query()
     result = bttcmd.search((Search.state == 1) & (Search.button == int(button)))
@@ -55,9 +56,11 @@ def buttonOnEvent(button):
         x = 1
 
 def buttonOffEvent(button):
+    print("ButtonOffEvent")
     print(button)
 
 def analogEvent(address, value):
+    print("analogEvent")
     global maxinvert
     if address == 2: #Tbar
         if value < 3:
@@ -117,6 +120,7 @@ def setDSK(i, state):
 
 
 def updateDisplayValue(value):
+    print("updateDisplayValue")
     lenght = len(str(value))
     value = list(str(value))
     global display
@@ -142,6 +146,7 @@ def updateDisplayValue(value):
 
 
 def setDisplay():
+    print("setDisplay")
     s = "d:"
     for v in display:
         s += str(v)
@@ -149,11 +154,13 @@ def setDisplay():
     sendPanelMSG(s)
 
 def sendPanelMSG(data):
+    print("sendPanelMSG")
     for client in clients:
         if client[2] == 1:
             client[0].sendMessage(data)
 
 def isSelf(self):
+    print("isSelf")
     stat = False
     for client in clients:
         if client[0] == self:
@@ -163,6 +170,7 @@ def isSelf(self):
 #server stuff
 class Server(WebSocket):
     def handleMessage(self):
+        print("handleMessage")
         global display
 ##      print(self.data)
         split = self.data.split(":")
@@ -205,6 +213,7 @@ class Server(WebSocket):
         #print(clients)
 
     def handleClose(self):
+        print("handleClose")
         for client in clients:
             if client[0] == self:
                 clients.remove(client)
@@ -213,6 +222,7 @@ class Server(WebSocket):
 
 #client stuff
 def bmdsend(command, data):
+    print("bmdsend")
     message = bytes(command) + bytes(data)
     print(message)
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
