@@ -33,8 +33,6 @@ lastPRV = 0
 
 invertnext = 0
 
-connstat = 0
-
 bmdhost = configdb.all()[0].get("bmdhost")
 bmdport = configdb.all()[0].get("bmdport")
 obshost = configdb.all()[0].get("obshost")
@@ -201,13 +199,10 @@ class Server(WebSocket):
                     client[0].sendMessage(self.data)
 
     def handleConnected(self):
-        global connstat
         print(self.address, 'connected')
         newClient = [self, self.address, 0]
         clients.append(newClient)
         #print(clients)
-        if not(connstat):
-            threading.Thread(target=client_start).start()
 
     def handleClose(self):
         for client in clients:
@@ -285,29 +280,6 @@ def server_start():
     server.serveforever()
     print("server restart")
 
-def ws_client_on_error(ws, error):
-    print("ws_client_on_error")
-    print(error)
-
-def ws_client_on_close(ws):
-    global connstat
-    print("### ws_client closed ###")
-    connstat = False
-
-def ws_client_on_open(ws):
-    global connstat
-    print("### ws_client opened ###")
-    connstat = True
-
-def client_start():
-    #while True:
-    print("client_start")
-    ws_client.run_forever() #()
-    print("client restart")
-
 if __name__ == "__main__":
     server = SimpleWebSocketServer('', 1234, Server)
     threading.Thread(target=server_start).start()
-    ws_client = websocket.WebSocketApp("ws://" + obshost + ":" + obsport, on_message = ws_client_on_message, on_error = ws_client_on_error, on_close = ws_client_on_close)
-    ws_client.on_open = ws_client_on_open
-    threading.Thread(target=client_start).start()
