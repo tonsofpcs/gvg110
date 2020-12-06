@@ -34,7 +34,7 @@ lastPRV = 0
 invertnext = 0
 
 bmdhost = configdb.all()[0].get("bmdhost")
-bmdport = configdb.all()[0].get("bmdport")
+bmdport = int(configdb.all()[0].get("bmdport"))
 obshost = configdb.all()[0].get("obshost")
 obsport = configdb.all()[0].get("obsport")
 
@@ -223,7 +223,7 @@ class Server(WebSocket):
 #client stuff
 def bmdsend(command, data):
     print("bmdsend")
-    sendmsg = bytes(command) + bytes(data)
+    sendmsg = bytes(command,'ascii') + bytes(data)
     print(sendmsg)
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     sock.sendto(sendmsg, (bmdhost, bmdport))
