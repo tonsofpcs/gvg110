@@ -37,6 +37,8 @@ connstat = 0
 
 bmdhost = configdb.all()[0].get("bmdhost")
 bmdport = configdb.all()[0].get("bmdport")
+obshost = configdb.all()[0].get("obshost")
+obsport = configdb.all()[0].get("obsport")
 
 
 #Events
@@ -82,6 +84,7 @@ def analogEvent(address, value):
         else:
             action = '{"request-type" : "SetTBarPosition", "message-id" : "2", "position" : %s, "release" : false}' % value
         #TODO: Code to set t-bar value
+    print("a")
 
 
 def setPRV(i):
@@ -220,12 +223,92 @@ def bmdsend(command, data):
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     sock.sendto(message, (bmdhost, bmdport))
 
+def ws_client_on_message(ws, message):
+    jsn = json.loads(message)
+    if "update-type" in jsn:
+        if jsn["update-type"] == "PreviewSceneChanged":
+            index = 12
+            try:
+                index = sceneNames.index(jsn["scene-name"])
+            except:
+                pass
+            setPRV(index + 1)
+        elif jsn["update-type"] == "SceneItemVisibilityChanged":
+            print(jsn)
+            if (jsn["scene-name"] == keyer) or (jsn["scene-name"] == keyer2):
+                index = 12
+                try:
+                    index = keyNames.index(jsn["item-name"])
+                    state = bool(jsn["item-visible"])
+                except:
+                    pass
+            setDSK(index + 1, state)
+        # elif jsn["update-type"] == "SceneItemTransformChanged":
+        #     print(jsn)
+        #     if jsn["scene-name"] == keyer:
+        #         index = 12
+        #         try:
+        #             index = keyNames.index(jsn["item-name"])
+        #             state = bool(jsn["visible"])
+        #         except:
+        #             pass
+        #     setDSK(index + 1, state)
+        elif jsn["update-type"] == "SwitchScenes":
+            index = 12
+            try:
+                index = sceneNames.index(jsn["scene-name"])
+            except:
+                pass
+            updateDisplayValue(index + 1)
+            setPGM(index + 1)
+        elif jsn["update-type"] == "SwitchTransition":
+            if jsn["transition-name"] == "Cut":
+                sendPanelMSG("b:50:52:54:48:49:")
+            elif jsn["transition-name"] == "Fade":
+                sendPanelMSG("a:54:")
+                sendPanelMSG("b:50:52:48:49:")
+            elif jsn["transition-name"] == "Slide":
+                sendPanelMSG("a:52:")
+                sendPanelMSG("b:50:54:48:49:")
+            elif jsn["transition-name"] == "Stinger":
+                sendPanelMSG("a:48:50:")
+                sendPanelMSG("b:52:49:54:")
+            elif jsn["transition-name"] == "Woosh":
+                sendPanelMSG("a:49:50:")
+                sendPanelMSG("b:52:54:48:")
+        print(jsn)
+
 def server_start():
     #while True:
     server.serveforever()
     print("server restart")
 
+def ws_client_on_error(ws, error):
+    print(error)
+
+def ws_client_on_close(ws):
+    global connstat
+    print("### ws_client closed ###")
+    connstat = False
+
+def ws_client_on_open(ws):
+    global connstat
+    print("### ws_client opened ###")
+    connstat = True
+
+def server_start():
+    #while True:
+    server.serveforever()
+    print("server restart")
+
+def client_start():
+    #while True:
+    ws_client.run_forever() #()
+    print("client restart")
 
 if __name__ == "__main__":
     server = SimpleWebSocketServer('', 1234, Server)
     threading.Thread(target=server_start).start()
+    ws_client = websocket.WebSocketApp("ws://" + obshost + ":" + obsport, on_message = ws_client_on_message, on_error = ws_client_on_error, on_close = ws_client_on_close)
+    ws_client.on_open = ws_client_on_open
+    threading.Thread(target=client_start).start()
