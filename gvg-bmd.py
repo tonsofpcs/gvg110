@@ -4,13 +4,14 @@
 #based on gvg.py by lebaston100
 
 
-import websocket, threading, json, time
+import websocket, threading, json, time, socket
 from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
 from tinydb import TinyDB, Query
 
 db = TinyDB('gvg-bmd.json')
 bttcmd = db.table('buttonCMD')
 analogcmd = db.table('analogCMD')
+configdb = db.table('config')
 
 PGMled = [33, 35, 37, 39, 13, 15, 14, 12, 0, 2]
 PRVled = [38, 36, 34, 32, 1, 3, 5, 7, 6, 4]
@@ -33,6 +34,10 @@ lastPRV = 0
 invertnext = 0
 
 connstat = 0
+
+Search = Query()
+print (configdb)
+
 
 #Events
 def buttonOnEvent(button):
@@ -210,73 +215,8 @@ class Server(WebSocket):
         print(self.address, 'disconnected')
 
 #client stuff
-def ws_client_on_message(ws, message):
-    jsn = json.loads(message)
-    if "update-type" in jsn:
-        if jsn["update-type"] == "PreviewSceneChanged":
-            index = 12
-            try:
-                index = sceneNames.index(jsn["scene-name"])
-            except:
-                pass
-            setPRV(index + 1)
-        elif jsn["update-type"] == "SceneItemVisibilityChanged":
-            print(jsn)
-            if (jsn["scene-name"] == keyer) or (jsn["scene-name"] == keyer2):
-                index = 12
-                try:
-                    index = keyNames.index(jsn["item-name"])
-                    state = bool(jsn["item-visible"])
-                except:
-                    pass
-            setDSK(index + 1, state)
-        # elif jsn["update-type"] == "SceneItemTransformChanged":
-        #     print(jsn)
-        #     if jsn["scene-name"] == keyer:
-        #         index = 12
-        #         try:
-        #             index = keyNames.index(jsn["item-name"])
-        #             state = bool(jsn["visible"])
-        #         except:
-        #             pass
-        #     setDSK(index + 1, state)
-        elif jsn["update-type"] == "SwitchScenes":
-            index = 12
-            try:
-                index = sceneNames.index(jsn["scene-name"])
-            except:
-                pass
-            updateDisplayValue(index + 1)
-            setPGM(index + 1)
-        elif jsn["update-type"] == "SwitchTransition":
-            if jsn["transition-name"] == "Cut":
-                sendPanelMSG("b:50:52:54:48:49:")
-            elif jsn["transition-name"] == "Fade":
-                sendPanelMSG("a:54:")
-                sendPanelMSG("b:50:52:48:49:")
-            elif jsn["transition-name"] == "Slide":
-                sendPanelMSG("a:52:")
-                sendPanelMSG("b:50:54:48:49:")
-            elif jsn["transition-name"] == "Stinger":
-                sendPanelMSG("a:48:50:")
-                sendPanelMSG("b:52:49:54:")
-            elif jsn["transition-name"] == "Woosh":
-                sendPanelMSG("a:49:50:")
-                sendPanelMSG("b:52:54:48:")
-        print(jsn)
+def bmdsend(command, data):
 
-def ws_client_on_error(ws, error):
-    print(error)
-
-def ws_client_on_close(ws):
-    global connstat
-    print("### ws_client closed ###")
-    connstat = False
-
-def ws_client_on_open(ws):
-    global connstat
-    print("### ws_client opened ###")
-    connstat = True
 
 def server_start():
     #while True:
@@ -291,6 +231,4 @@ def client_start():
 if __name__ == "__main__":
     server = SimpleWebSocketServer('', 1234, Server)
     threading.Thread(target=server_start).start()
-    ws_client = websocket.WebSocketApp("ws://192.168.1.126:4444", on_message = ws_client_on_message, on_error = ws_client_on_error, on_close = ws_client_on_close)
-    ws_client.on_open = ws_client_on_open
     threading.Thread(target=client_start).start()
