@@ -229,4 +229,3 @@ def server_start():
 if __name__ == "__main__":
     server = SimpleWebSocketServer('', 1234, Server)
     threading.Thread(target=server_start).start()
-    threading.Thread(target=client_start).start()
