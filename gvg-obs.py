@@ -11,6 +11,7 @@ from tinydb import TinyDB, Query
 db = TinyDB('gvg-obs.json')
 bttcmd = db.table('buttonCMD')
 analogcmd = db.table('analogCMD')
+configdb = db.table('config')
 
 PGMled = [33, 35, 37, 39, 13, 15, 14, 12, 0, 2]
 PRVled = [38, 36, 34, 32, 1, 3, 5, 7, 6, 4]
@@ -38,6 +39,9 @@ lastPRV = 0
 invertnext = 0
 
 connstat = 0
+
+obshost = configdb.all()[0].get("obshost")
+obsport = configdb.all()[0].get("obsport")
 
 #Events
 def buttonOnEvent(button):
@@ -304,6 +308,6 @@ def client_start():
 if __name__ == "__main__":
     server = SimpleWebSocketServer('', 1234, Server)
     threading.Thread(target=server_start).start()
-    ws_client = websocket.WebSocketApp("ws://192.168.1.126:4444", on_message = ws_client_on_message, on_error = ws_client_on_error, on_close = ws_client_on_close)
+    ws_client = websocket.WebSocketApp("ws://" + obshost + ":" + obsport, on_message = ws_client_on_message, on_error = ws_client_on_error, on_close = ws_client_on_close)
     ws_client.on_open = ws_client_on_open
     threading.Thread(target=client_start).start()
