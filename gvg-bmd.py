@@ -81,7 +81,6 @@ def analogEvent(address, value):
             action = '{"request-type" : "ReleaseTBar", "message-id" : "3"}'
         else:
             action = '{"request-type" : "SetTBarPosition", "message-id" : "2", "position" : %s, "release" : false}' % value
-        ws_client.send(action)
         #TODO: Code to set t-bar value
 
 
@@ -226,10 +225,6 @@ def server_start():
     server.serveforever()
     print("server restart")
 
-def client_start():
-    #while True:
-    ws_client.run_forever() #()
-    print("client restart")
 
 if __name__ == "__main__":
     server = SimpleWebSocketServer('', 1234, Server)
