@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 #!/usr/bin/env python3
-#gvg-obs.py  2020 Eric Adler
+#gvg-bmd.py  2020 Eric Adler
 #based on gvg.py by lebaston100
 
 
@@ -35,8 +35,8 @@ invertnext = 0
 
 connstat = 0
 
-Search = Query()
-print (configdb)
+bmdhost = configdb.all()[0].get("bmdhost")
+bmdport = configdb.all()[0].get("bmdport")
 
 
 #Events
@@ -216,7 +216,10 @@ class Server(WebSocket):
 
 #client stuff
 def bmdsend(command, data):
-
+    message = bytes(command) + bytes(data)
+    print(message)
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    sock.sendto(message, (bmdhost, bmdport))
 
 def server_start():
     #while True:
