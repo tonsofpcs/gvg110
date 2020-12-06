@@ -223,10 +223,10 @@ class Server(WebSocket):
 #client stuff
 def bmdsend(command, data):
     print("bmdsend")
-    message = bytes(command) + bytes(data)
-    print(message)
+    sendmsg = bytes(command) + bytes(data)
+    print(sendmsg)
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    sock.sendto(message, (bmdhost, bmdport))
+    sock.sendto(sendmsg, (bmdhost, bmdport))
 
 def ws_client_on_message(ws, message):
     print("ws_client_on_message")
