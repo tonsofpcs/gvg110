@@ -49,9 +49,10 @@ def buttonOnEvent(button):
         print(result)
         for line in result:
             bmdrequest = bytes(line["requestType"],'ascii')
+            print("bmdrequest:" , bmdrequest)
             bmddatalen = line["length"]
-            bmddata = line["data"].to_bytes(bmddatalen)
-            print("BMD Data: %s" % bmddata)
+            print("bmddatalen:", bmddatalen)
+            bmddata = line["data"].to_bytes(bmddatalen, byteorder='big')
             if line["actionType"] == "bmd-atem":
                 bmdsend(bmdrequest, bmddata)
     elif button in makroKeys:

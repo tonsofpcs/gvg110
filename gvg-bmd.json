@@ -2,7 +2,7 @@
   "_default": {},
   "config" : {
     "1": {
-    "bmdhost" : "192.168.1.1",
+    "bmdhost" : "192.168.1.126",
     "bmdport" : "9910",
     "obshost" : "192.168.1.126",
     "obsport" : "4444"
