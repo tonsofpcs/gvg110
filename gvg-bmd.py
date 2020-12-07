@@ -2,7 +2,7 @@
 #!/usr/bin/env python3
 #gvg-bmd.py  2020 Eric Adler
 #based on gvg.py by lebaston100
-
+#Some BMD interface ideas from Kasper Skaarhoj: https://github.com/kasperskaarhoj/SKAARHOJ-Open-Engineering/blob/master/ArduinoLibs/
 
 import websocket, threading, json, time, socket, datetime
 from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
