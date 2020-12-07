@@ -4,7 +4,7 @@
 #based on gvg.py by lebaston100
 
 
-import websocket, threading, json, time, socket
+import websocket, threading, json, time, socket, datetime
 from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
 from tinydb import TinyDB, Query
 
@@ -33,11 +33,57 @@ lastPRV = 0
 
 invertnext = 0
 
-bmdhost = configdb.all()[0].get("bmdhost")
-bmdport = int(configdb.all()[0].get("bmdport"))
 obshost = configdb.all()[0].get("obshost")
 obsport = configdb.all()[0].get("obsport")
 
+bmdhost = configdb.all()[0].get("bmdhost")
+bmdport = int(configdb.all()[0].get("bmdport"))
+bmdclient_connected = 0
+bmdinitialize = 0 #0 = nothing, 1 = sent, 2+ = online
+bmdsessionid = b"\xD4\x31"
+bmdremoteid = b"\x00\x00"
+bmdpacketid = 255
+bmdwaiting = 0
+bmdinit = [0]*8
+bmdlastsend = datetime.datetime
+
+headercommands = {
+    "0": 0,
+    "SYN": 1,
+    "HELLO": 2,
+    "RESEND": 4,
+    "REQUEST": 8,
+    "ACK": 16,
+    "inc": 26
+}
+
+def orlist(list1, list2):
+    return [l1 | l2 for l1,l2 in zip(list1,list2)]
+
+def andlist(list1, list2):
+    return [l1 & l2 for l1,l2 in zip(list1,list2)]
+
+def xorlist(list1, list2):
+    return [l1 ^ l2 for l1,l2 in zip(list1,list2)]
+
+def orbin(bin1, bin2):
+    result = bytearray(bin1)
+    for i, b in enumerate(bin2):
+        result[i] |= b
+    return bytes(result)
+
+def andbin(bin1, bin2):
+    result = bytearray(bin1)
+    for i, b in enumerate(bin2):
+        print(i, result[i], b)
+        result[i] &= b
+    return bytes(result)
+
+def xorbin(bin1, bin2):
+    result = bytearray(bin1)
+    for i, b in enumerate(bin2):
+        result[i] ^= b
+    return bytes(result)
 
 #Events
 def buttonOnEvent(button):
@@ -48,13 +94,13 @@ def buttonOnEvent(button):
     if result:
         print(result)
         for line in result:
-            bmdrequest = bytes(line["requestType"],'ascii')
+            bmdrequest = (bytes(line["requestType"],'ascii'))
             print("bmdrequest:" , bmdrequest)
             bmddatalen = line["length"]
             print("bmddatalen:", bmddatalen)
             bmddata = line["data"].to_bytes(bmddatalen, byteorder='big')
             if line["actionType"] == "bmd-atem":
-                bmdsend(bmdrequest, bmddata)
+                bmdpush(bmdrequest, bmddata)
     elif button in makroKeys:
         x = 1
 
@@ -224,13 +270,106 @@ class Server(WebSocket):
         print(self.address, 'disconnected')
 
 #client stuff
-def bmdsend(command, data):
-    print("bmdsend")
-    sendmsg = command + data
-    print(sendmsg)
-    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    sock.sendto(sendmsg, (bmdhost, bmdport))
+def bmdconnect():
+    global bmdlastsend
+    header = bmdheader(20, "HELLO", 0)
+    data = b"\x00\x00\x00\x00\x00\x00\x00\x00\x3a\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00"
+    bmdlastsend = datetime.datetime.now()
+    sendmsg = header + data
+    bmdsend(sendmsg)
 
+def bmdrun():
+    global bmdclient_connected
+    global bmdwaiting
+    global bmdlastsend
+    global bmdinitialize
+
+    if not(bmdclient_connected):
+        bmdconnect()
+    
+    if not(bmdinitialize > 1) and not(bmdwaiting):
+        for counter in range(64):
+            if not(bmdinit[int(counter/8)]):
+                sendmsg = bmdheader(12,"REQUEST",0) + b"\x00\x00\x00\x00\x00" + counter.to_bytes(2, byteorder='big') + b"\x01\x01\x01\x01\x01"
+                bmdsend(sendmsg)
+                bmdwaiting = 1
+        if not(bmdwaiting):
+            bmdinitialize = 2
+            print("BMD Initialized")
+    
+    if ((datetime.datetime.now() - bmdlastsend).microseconds > 5000000): #5s past
+        print("BMD Timed out")
+        bmdconnect()
+
+def bmd_listen():
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
+    sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    sock.bind(('0.0.0.0', 51050))
+    while True:
+        data, addr = sock.recvfrom(1024)
+        bmdreceive(data)
+
+def bmdreceive(data):
+    global bmdsessionid
+    global bmdremoteid
+
+    bmdsessionid = data[2:4]
+    bmdremoteid = data[10:12]
+    if len(data) > 12:
+        data = data[12:]
+        #while len(data) >= 8:
+        dataitem = data[:8]
+        data = data[8:]
+        commandlength = int(dataitem[0:2])
+        command = dataitem[4:8] + b"\x00"
+        bmdcommand(command)
+
+def bmdcommand(command):
+    #TODO: Handle HELLO packet responses and some other things.  Maybe update the timeouts on receive too?
+    if (command[0] == bmdheader.get("HELLO")):
+        bmdpush("ACK","\x00\x00\x00\x00\x00\x00\x00\x00\x03\x00\x00\x00")
+    print("Received command ", command)
+
+def bmdheader(datalength, command, remoteid):
+    #return b"\x08\x18\x80\x02\x00\x00\x00\x00\x00\x00\x2b\xcb\x00\x0c\x00\x00"
+    print("bmdheader")
+    global bmdsessionid
+    global bmdpacketid
+    global bmdremoteid
+
+    command = headercommands.get(command)
+    print("bmdheader: command = ", command)
+    testcmd = command.to_bytes(1, byteorder='big')
+    print("bmdheader: testcmd = ", testcmd)
+    
+    commandshift = command * 2048
+
+    if (andbin(headercommands.get("inc").to_bytes(1, byteorder='big'), testcmd) == b"\x00"):
+        bmdpacketid += 1
+        print("bmdheader: packetid = ", bmdpacketid)
+        if(bmdpacketid > 255): bmdpacketid = 0
+        header = orbin(andbin(datalength.to_bytes(2, byteorder='big'), b"\x07\x00"), commandshift.to_bytes(2, byteorder='big')) + bmdsessionid + bmdremoteid + bytes(4) + bmdpacketid.to_bytes(2, byteorder='big')
+    else:
+        print("bmdheader: packetid = ", bmdpacketid)
+        header = orbin(andbin(datalength.to_bytes(2, byteorder='big'), b"\x07\x00"), commandshift.to_bytes(2, byteorder='big')) + bmdsessionid + bmdremoteid + bytes(6)
+    print("bmdheader: result:", header)
+
+    return header
+
+def bmdsend(message):
+    print("bmdsend:", message)
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    sock.bind(('0.0.0.0', 51050))
+    sock.sendto(message, (bmdhost, bmdport))
+
+def bmdpush(command, data):
+    print("bmdpush")
+    header = bmdheader(len(data),"0",0)
+    print("Header: ", header)
+    sendmsg = header + command + data
+    bmdsend(sendmsg)
+    
 def ws_client_on_message(ws, message):
     print("ws_client_on_message")
     jsn = json.loads(message)
@@ -296,3 +435,5 @@ def server_start():
 if __name__ == "__main__":
     server = SimpleWebSocketServer('', 1234, Server)
     threading.Thread(target=server_start).start()
+    threading.Thread(target=bmd_listen).start()
+    bmdrun()
