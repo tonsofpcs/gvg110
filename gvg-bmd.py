@@ -41,7 +41,7 @@ bmdoscport = int(configdb.all()[0].get("bmdport"))
 bmdoscprefix = configdb.all()[0].get("bmdoscprefix")
 
 sockconnected = False
-sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+sock = socket.socket(socket.AF_INET, socket.DGRAM)
 
 #Events
 def buttonOnEvent(button):
