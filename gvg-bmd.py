@@ -56,7 +56,7 @@ def buttonOnEvent(button):
             #print("bmddatalen:", bmddatalen)
             bmddata = int(line["data"])
             if line["actionType"] == "bmd-osc":
-                bmdsend((bmdoscprefix + bmdrequest), bmddata)
+                bmdsend((bmdoscprefix + bmdrequest))
     elif button in makroKeys:
         x = 1
 
@@ -233,9 +233,9 @@ def bmd_listen():
 def bmdreceive(data):
     pass
 
-def bmdsend(message, value):
+def bmdsend(message):
     client = udp_client.SimpleUDPClient(bmdoschost, bmdoscport)
-    client.send_message(message, value)
+    client.send_message(message)
 
 def ws_client_on_message(ws, message):
     print("ws_client_on_message")
