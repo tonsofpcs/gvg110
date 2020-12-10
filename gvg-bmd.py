@@ -235,7 +235,7 @@ def bmdreceive(data):
 
 def bmdsend(message):
     client = udp_client.SimpleUDPClient(bmdoschost, bmdoscport)
-    client.send_message(message)
+    client.send_message(message, None)
 
 def ws_client_on_message(ws, message):
     print("ws_client_on_message")
