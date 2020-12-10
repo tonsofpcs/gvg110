@@ -14,7 +14,7 @@
       "button": 24,
       "actionType": "bmd-osc",
       "state": 1,
-      "requestType": "pst",
+      "requestType": "2/22",
       "data": 0,
       "comment": "Preview - black - 0"
     },
@@ -22,7 +22,7 @@
       "button": 25,
       "actionType": "bmd-osc",
       "state": 1,
-      "requestType": "pst",
+      "requestType": "2/24",
       "data": 1000,
       "comment": "Preview - bars - 1000"
     },
@@ -30,7 +30,7 @@
       "button": 26,
       "actionType": "bmd-osc",
       "state": 1,
-      "requestType": "pst",
+      "requestType": "2/23",
       "data": 2001,
       "comment": "Preview - color1 - 2001"
     },
@@ -94,7 +94,7 @@
       "button": 16,
       "actionType": "bmd-osc",
       "state": 1,
-      "requestType": "pgm",
+      "requestType": "2/22",
       "data": 0,
       "comment": "Program - black - 0"
     },
@@ -102,7 +102,7 @@
       "button": 17,
       "actionType": "bmd-osc",
       "state": 1,
-      "requestType": "pgm",
+      "requestType": "2/24",
       "data": 1000,
       "comment": "Program - Bars - 1000"
     },
@@ -110,7 +110,7 @@
       "button": 18,
       "actionType": "bmd-osc",
       "state": 1,
-      "requestType": "pgm",
+      "requestType": "2/23",
       "data": 2001,
       "comment": "Program - color1 - 2001"
     },
