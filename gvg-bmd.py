@@ -7,7 +7,6 @@
 import websocket, threading, json, time, socket, datetime
 from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
 from tinydb import TinyDB, Query
-from pythonosc import udp_client
 
 db = TinyDB('gvg-bmd.json')
 bttcmd = db.table('buttonCMD')
@@ -40,6 +39,9 @@ obsport = configdb.all()[0].get("obsport")
 bmdoschost = configdb.all()[0].get("bmdhost")
 bmdoscport = int(configdb.all()[0].get("bmdport"))
 bmdoscprefix = configdb.all()[0].get("bmdoscprefix")
+
+sockconnected = False
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 #Events
 def buttonOnEvent(button):
@@ -234,8 +236,12 @@ def bmdreceive(data):
     pass
 
 def bmdsend(message, value):
-    client = udp_client.SimpleUDPClient(bmdoschost, bmdoscport)
-    client.send_message(message, value)
+    if value:
+        sock.send(bytes(message + " " + str(value),'ascii'))
+    else:
+        sock.send(bytes(message,'ascii'))
+
+
 
 def ws_client_on_message(ws, message):
     print("ws_client_on_message")
@@ -303,5 +309,7 @@ if __name__ == "__main__":
     print("BMD Host", bmdoschost)
     print("BMD Port", bmdoscport)
     server = SimpleWebSocketServer('', 1234, Server)
+    server_address = (bmdoschost, bmdoscport)
+    sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     threading.Thread(target=server_start).start()
     #threading.Thread(target=bmd_listen).start()
