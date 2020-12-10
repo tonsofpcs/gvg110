@@ -300,6 +300,8 @@ def server_start():
     print("server restart")
 
 if __name__ == "__main__":
+    print("BMD Host", bmdoschost)
+    print("BMD Port", bmdoscport)
     server = SimpleWebSocketServer('', 1234, Server)
     threading.Thread(target=server_start).start()
     #threading.Thread(target=bmd_listen).start()
