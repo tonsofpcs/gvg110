@@ -2,11 +2,11 @@
   "_default": {},
   "config" : {
     "1": {
-    "bmdhost" : "192.168.1.126",
-    "bmdport" : "9910",
+    "bmdhost" : "192.168.1.166",
+    "bmdport" : "12321",
     "obshost" : "192.168.1.126",
     "obsport" : "4444",
-    "bmdoscprefix" : "/osc/"
+    "bmdoscprefix" : "/press/bank/"
     }
   },
   "buttonCMD": {
@@ -15,7 +15,6 @@
       "actionType": "bmd-osc",
       "state": 1,
       "requestType": "pst",
-      "length": 4,
       "data": 0,
       "comment": "Preview - black - 0"
     },
@@ -24,7 +23,6 @@
       "actionType": "bmd-osc",
       "state": 1,
       "requestType": "pst",
-      "length": 4,
       "data": 1000,
       "comment": "Preview - bars - 1000"
     },
@@ -33,7 +31,6 @@
       "actionType": "bmd-osc",
       "state": 1,
       "requestType": "pst",
-      "length": 4,
       "data": 2001,
       "comment": "Preview - color1 - 2001"
     },
@@ -42,7 +39,6 @@
       "actionType": "bmd-osc",
       "state": 1,
       "requestType": "pst",
-      "length": 4,
       "data": 2002,
       "comment": "Preview - color2 - 2002"
     },
@@ -51,7 +47,6 @@
       "actionType": "bmd-osc",
       "state": 1,
       "requestType": "pst",
-      "length": 4,
       "data": 5,
       "comment": "Preview - CAM 5"
     },
@@ -60,7 +55,6 @@
       "actionType": "bmd-osc",
       "state": 1,
       "requestType": "pst",
-      "length": 4,
       "data": 6,
       "comment": "Preview - CAM 6"
     },
@@ -68,36 +62,32 @@
       "button": 30,
       "actionType": "bmd-osc",
       "state": 1,
-      "requestType": "pst",
-      "length": 4,
-      "data": 1,
+      "requestType": "2",
+      "data": 17,
       "comment": "Preview - CAM 1"
     },
     "8": {
       "button": 31,
       "actionType": "bmd-osc",
       "state": 1,
-      "requestType": "pst",
-      "length": 4,
-      "data": 2,
+      "requestType": "2",
+      "data": 18,
       "comment": "Preview - CAM 2"
     },
     "9": {
       "button": 36,
       "actionType": "bmd-osc",
       "state": 1,
-      "requestType": "pst",
-      "length": 4,
-      "data": 3,
+      "requestType": "2",
+      "data": 19,
       "comment": "Preview - CAM 3"
     },
     "10": {
       "button": 37,
       "actionType": "bmd-osc",
       "state": 1,
-      "requestType": "pst",
-      "length": 4,
-      "data": 4,
+      "requestType": "2",
+      "data": 20,
       "comment": "Preview - CAM 4"
     },
     "11": {
@@ -105,7 +95,6 @@
       "actionType": "bmd-osc",
       "state": 1,
       "requestType": "pgm",
-      "length": 4,
       "data": 0,
       "comment": "Program - black - 0"
     },
@@ -114,7 +103,6 @@
       "actionType": "bmd-osc",
       "state": 1,
       "requestType": "pgm",
-      "length": 4,
       "data": 1000,
       "comment": "Program - Bars - 1000"
     },
@@ -123,7 +111,6 @@
       "actionType": "bmd-osc",
       "state": 1,
       "requestType": "pgm",
-      "length": 4,
       "data": 2001,
       "comment": "Program - color1 - 2001"
     },
@@ -132,7 +119,6 @@
       "actionType": "bmd-osc",
       "state": 1,
       "requestType": "pgm",
-      "length": 4,
       "data": 2002,
       "comment": "Program - color2 - 2002"
     },
@@ -141,7 +127,6 @@
       "actionType": "bmd-osc",
       "state": 1,
       "requestType": "pgm",
-      "length": 4,
       "data": 5,
       "comment": "Program - CAM 5"
     },
@@ -150,7 +135,6 @@
       "actionType": "bmd-osc",
       "state": 1,
       "requestType": "pgm",
-      "length": 4,
       "data": 6,
       "comment": "Program - CAM 6"
     },
@@ -158,45 +142,40 @@
       "button": 22,
       "actionType": "bmd-osc",
       "state": 1,
-      "requestType": "pgm",
-      "length": 4,
-      "data": 1,
+      "requestType": "2",
+      "data": 9,
       "comment": "Program - CAM 1"
     },
     "18": {
       "button": 23,
       "actionType": "bmd-osc",
       "state": 1,
-      "requestType": "pgm",
-      "length": 4,
-      "data": 2,
+      "requestType": "2",
+      "data": 10,
       "comment": "Program - CAM 2"
     },
     "19": {
       "button": 32,
       "actionType": "bmd-osc",
       "state": 1,
-      "requestType": "pgm",
-      "length": 4,
-      "data": 3,
+      "requestType": "2",
+      "data": 11,
       "comment": "Program - CAM 3"
     },
     "20": {
       "button": 33,
       "actionType": "bmd-osc",
       "state": 1,
-      "requestType": "pgm",
-      "length": 4,
-      "data": 4,
+      "requestType": "2",
+      "data": 12,
       "comment": "Program - CAM 4"
     },
     "21": {
       "button": 38,
       "actionType": "bmd-osc",
       "state": 1,
-      "requestType": "take",
-      "length": 4,
-      "data": 0,
+      "requestType": "2",
+      "data": 21,
       "comment": "Cut"
     },
     "22": {
@@ -204,7 +183,6 @@
       "actionType": "bmd-osc",
       "state": 1,
       "requestType": "mix",
-      "length": 4,
       "data": 1,
       "comment": "Set transition to dissolve background"
     },
@@ -212,16 +190,14 @@
       "button": 39,
       "actionType": "bmd-osc",
       "state": 1,
-      "requestType": "auto",
-      "length": 4,
-      "data": 4,
+      "requestType": "2",
+      "data": 13,
       "comment": "Auto transition"
     },
     "24": {
       "button": 51,
       "actionType": "bmd-osc",
       "requestType": "wipe",
-      "length": 4,
       "state": 1,
       "data": 513,
       "comment": "Set transition to Wipe background"
@@ -230,7 +206,6 @@
       "button": 50,
       "actionType": "bmd-osc",
       "requestType": "mix",
-      "length": 4,
       "state": 1,
       "data": 1,
       "comment": "Set transition to dissolve background"
@@ -239,7 +214,6 @@
       "button": 48,
       "actionType": "bmd-osc",
       "requestType": "key",
-      "length": 4,
       "state": 1,
       "data": 1,
       "comment": "Toggle key1"
@@ -248,7 +222,6 @@
       "button": 49,
       "actionType": "bmd-osc",
       "requestType": "mix",
-      "length": 4,
       "state": 1,
       "data": 1,
       "comment": "Set transition to dissolve background"

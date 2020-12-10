@@ -2,7 +2,7 @@
 #!/usr/bin/env python3
 #gvg-bmd.py  2020 Eric Adler
 #based on gvg.py by lebaston100
-#rewritten to use OSC to drive Broadcast Controller to drive an ATEM
+#rewritten to use OSC to drive a third party app to drive an ATEM
 
 import websocket, threading, json, time, socket, datetime
 from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
