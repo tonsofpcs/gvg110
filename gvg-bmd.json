@@ -62,7 +62,7 @@
       "button": 30,
       "actionType": "bmd-osc",
       "state": 1,
-      "requestType": "2",
+      "requestType": "2/17",
       "data": 17,
       "comment": "Preview - CAM 1"
     },
@@ -70,7 +70,7 @@
       "button": 31,
       "actionType": "bmd-osc",
       "state": 1,
-      "requestType": "2",
+      "requestType": "2/18",
       "data": 18,
       "comment": "Preview - CAM 2"
     },
@@ -78,7 +78,7 @@
       "button": 36,
       "actionType": "bmd-osc",
       "state": 1,
-      "requestType": "2",
+      "requestType": "2/19",
       "data": 19,
       "comment": "Preview - CAM 3"
     },
@@ -86,7 +86,7 @@
       "button": 37,
       "actionType": "bmd-osc",
       "state": 1,
-      "requestType": "2",
+      "requestType": "2/20",
       "data": 20,
       "comment": "Preview - CAM 4"
     },
@@ -142,7 +142,7 @@
       "button": 22,
       "actionType": "bmd-osc",
       "state": 1,
-      "requestType": "2",
+      "requestType": "2/9",
       "data": 9,
       "comment": "Program - CAM 1"
     },
@@ -150,7 +150,7 @@
       "button": 23,
       "actionType": "bmd-osc",
       "state": 1,
-      "requestType": "2",
+      "requestType": "2/10",
       "data": 10,
       "comment": "Program - CAM 2"
     },
@@ -158,7 +158,7 @@
       "button": 32,
       "actionType": "bmd-osc",
       "state": 1,
-      "requestType": "2",
+      "requestType": "2/11",
       "data": 11,
       "comment": "Program - CAM 3"
     },
@@ -166,7 +166,7 @@
       "button": 33,
       "actionType": "bmd-osc",
       "state": 1,
-      "requestType": "2",
+      "requestType": "2/12",
       "data": 12,
       "comment": "Program - CAM 4"
     },
@@ -174,7 +174,7 @@
       "button": 38,
       "actionType": "bmd-osc",
       "state": 1,
-      "requestType": "2",
+      "requestType": "2/21",
       "data": 21,
       "comment": "Cut"
     },
@@ -190,7 +190,7 @@
       "button": 39,
       "actionType": "bmd-osc",
       "state": 1,
-      "requestType": "2",
+      "requestType": "2/13",
       "data": 13,
       "comment": "Auto transition"
     },
