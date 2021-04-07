@@ -342,6 +342,8 @@
       "analogreplace" : 1,
       "actionType": "vmix-http",
       "state": 1,
+      "narrow": 1,
+      "scale": 255,
       "requestType": "Function",
       "action": "SetFader",
       "parameters" : "Value=$analog$"

@@ -7,6 +7,7 @@
 import websocket, threading, json, time
 from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
 from tinydb import TinyDB, Query
+import requests
 
 db = TinyDB('gvg-obs.json')
 bttcmd = db.table('buttonCMD')
@@ -21,7 +22,10 @@ makroKeys = [8, 9, 10, 11, 12, 13, 14, 15, 34, 35]
 sceneNames = ["src 1", "src 2", "src 3", "src 4", "src 5", "src 6", "src 7", "src 8", "src 9", "src 10"]
 keyNames = ["key 1", "key 2", "key 3", "key 4", "key 5", "key 6", "key 7", "key 8", "key 9", "key 10"]
 keyer = "keyA"
-toggle = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+toggle = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+tbarmaxinvert = 0
+vmixapi = ""
 
 clients = []
 display = [15, 15, 15, 0, 15]
@@ -33,6 +37,13 @@ curPRV = 0
 lastPRV = 0
 
 connstat = 0
+
+configdb = db.table('config')
+
+vmixhost = configdb.all()[0].get("vmixhost")
+vmixhttpport = configdb.all()[0].get("vmixhttpport")
+vmixapiroot = configdb.all()[0].get("vmixapiroot")
+
 
 #Events
 def buttonOnEvent(button):
@@ -59,8 +70,9 @@ def buttonOnEvent(button):
                     setLED(lamp,toggle[toggleit])
             except:
                 pass
-            if line["actionType"] == "obs-ws":
-                ws_client.send(action)
+            if line["actionType"] == "vmix-http":
+                requeststring = action + '?' + line["parameters"]
+                vmix_http(action)
     elif button in makroKeys:
         x = 1
 
@@ -68,7 +80,30 @@ def buttonOffEvent(button):
     print(button)
 
 def analogEvent(address, value):
-    print(address, value)
+    global tbarmaxinvert
+    Search = Query()
+    result = bttcmd.search((Search.state == 1) & (Search.button == int(button)))
+    if result:
+        print(result)
+        for line in result:
+            try:
+                narrow = int(line["narrow"])
+            except:
+                narrow = 0
+            
+            try:
+                scale = int(line["scale"])
+            except:
+                scale = 1023
+
+        if narrow:
+            if value < 3:
+                value = 0
+            if 1019 > value:
+                value = 1023
+        
+        value = int((value * scale) / 1023)
+
     if address == 2: #Tbar
         if value < 3:
             sendPanelMSG("b:46:")
@@ -78,6 +113,20 @@ def analogEvent(address, value):
             sendPanelMSG("b:47:")
         else:
             sendPanelMSG("b:46:47:")
+        
+        if tbarmaxinvert:
+            value = value
+        else:
+            value = scale - value
+        
+        if value == scale:
+            tbarmaxinvert = not(tbarmaxinvert)
+        
+    action = line["action"]
+    action = action.replace("$analog$", value)
+    if line["actionType"] == "vmix-http":
+        requeststring = action + '?' + line["parameters"]
+        vmix_http(action)
 
 def setPRV(i):
     if i < 11:
@@ -293,9 +342,14 @@ def client_start():
     ws_client.run_forever() #()
     print("client restart")
 
+def vmix_http(requeststring):
+    global vmixapi
+    querystring = vmixapi + requeststring
+    r = requests.get(querystring)
+    print(r)
+
 if __name__ == "__main__":
     server = SimpleWebSocketServer('', 1234, Server)
     threading.Thread(target=server_start).start()
-    ws_client = websocket.WebSocketApp("ws://192.168.1.158:4444", on_message = ws_client_on_message, on_error = ws_client_on_error, on_close = ws_client_on_close)
-    ws_client.on_open = ws_client_on_open
-    threading.Thread(target=client_start).start()
+    #threading.Thread(target=client_start).start()
+    vmixapi = 'http://' + vmixhost + ':' + vmixhttpport + '/' + vmixapiroot
