@@ -97,41 +97,41 @@ def analogEvent(address, value):
             except:
                 scale = 1023
 
-        if narrow:
-            if value < 3:
-                value = 0
-            if 1019 > value:
-                value = 1023
-        
-    if address == 2: #Tbar
-        if value < 3:
-            sendPanelMSG("b:46:")
-            sendPanelMSG("a:47:")
-        elif value > 1019:
-            sendPanelMSG("a:46:")
-            sendPanelMSG("b:47:")
-        else:
-            sendPanelMSG("b:46:47:")
-        
-        if tbarmaxinvert:
-            value = value
-        else:
-            value = 1023 - value
-        
-        if value == 1023:
-            tbarmaxinvert = not(tbarmaxinvert)
+            if narrow:
+                if value < 3:
+                    value = 0
+                if 1019 > value:
+                    value = 1023
+            print(["analogEvent", address, value])
+            if address == 2: #Tbar
+                if value < 3:
+                    sendPanelMSG("b:46:")
+                    sendPanelMSG("a:47:")
+                elif value > 1019:
+                    sendPanelMSG("a:46:")
+                    sendPanelMSG("b:47:")
+                else:
+                    sendPanelMSG("b:46:47:")
+                
+                if tbarmaxinvert:
+                    value = value
+                else:
+                    value = 1023 - value
+                
+                if value == 1023:
+                    tbarmaxinvert = not(tbarmaxinvert)
 
-        value = int((value * scale) / 1023)
-
-    action = line["action"]
-    print(action)
-    if line["actionType"] == "vmix-http":
-        action = 'Function=' + action + '&' + line["parameters"]
-        print(action)
-        print(value)
-        action = action.replace("$analog$", str(value))
-        print(action)
-        vmix_http(action)
+                value = int((value * scale) / 1023)
+            print(["analogEvent", address, value])
+            action = line["action"]
+            print(action)
+            if line["actionType"] == "vmix-http":
+                action = 'Function=' + action + '&' + line["parameters"]
+                print(action)
+                print(value)
+                action = action.replace("$analog$", str(value))
+                print(action)
+                vmix_http(action)
 
 def setPRV(i):
     if i < 11:
