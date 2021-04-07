@@ -100,7 +100,7 @@ def analogEvent(address, value):
             if narrow:
                 if value < 3:
                     value = 0
-                if 1019 > value:
+                if 1019 < value:
                     value = 1023
             if address == 2: #Tbar
                 if value < 3:
@@ -116,20 +116,13 @@ def analogEvent(address, value):
                     value = value
                 else:
                     value = 1023 - value
-                
                 if value == 1023:
                     tbarmaxinvert = not(tbarmaxinvert)
-            print(["analogEvent", address, value, scale])
             value = int((value * scale) / 1023)
-            print(["analogEvent", address, value])
             action = line["action"]
-            print(action)
             if line["actionType"] == "vmix-http":
                 action = 'Function=' + action + '&' + line["parameters"]
-                print(action)
-                print(value)
                 action = action.replace("$analog$", str(value))
-                print(action)
                 vmix_http(action)
 
 def setPRV(i):
