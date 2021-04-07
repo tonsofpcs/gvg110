@@ -83,8 +83,10 @@ def analogEvent(address, value):
     print("analogEvent")
     global tbarmaxinvert
     Search = Query()
-    result = analogcmd.search((Search.state == 1) & (Search.analog == int(analog)))
+    print("still here")
+    result = analogcmd.search((Search.state == 1) & (Search.analog == int(address)))
     if result:
+        print("ok, we got something")
         print(result)
         for line in result:
             try:
