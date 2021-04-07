@@ -102,7 +102,6 @@ def analogEvent(address, value):
                     value = 0
                 if 1019 > value:
                     value = 1023
-            print(["analogEvent", address, value])
             if address == 2: #Tbar
                 if value < 3:
                     sendPanelMSG("b:46:")
@@ -120,8 +119,8 @@ def analogEvent(address, value):
                 
                 if value == 1023:
                     tbarmaxinvert = not(tbarmaxinvert)
-
-                value = int((value * scale) / 1023)
+            print(["analogEvent", address, value, scale])
+            value = int((value * scale) / 1023)
             print(["analogEvent", address, value])
             action = line["action"]
             print(action)
