@@ -82,6 +82,7 @@ def buttonOffEvent(button):
 def analogEvent(address, value):
     global tbarmaxinvert
     Search = Query()
+    print(["analogEvent", address, value])
     result = analogcmd.search((Search.state == 1) & (Search.analog == int(address)))
     if result:
         print(result)
