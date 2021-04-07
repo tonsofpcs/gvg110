@@ -182,7 +182,7 @@
       "actionType": "vmix-http",
       "requestType": "Function",
       "state": 1,
-      "action": "Transition2",
+      "action": "Transition1",
       "parameters": "",
       "comment": "Auto take - second transition button"
     },
@@ -191,7 +191,7 @@
       "actionType": "vmix-http",
       "state": 1,
       "requestType": "Function",
-      "action": "SetTransitionEffect2",
+      "action": "SetTransitionEffect1",
       "parameters": "Value=Wipe",
       "comment": "Set transition to wipe"
     },
@@ -200,7 +200,7 @@
       "actionType": "vmix-http",
       "state": 1,
       "requestType": "Function",
-      "action": "SetTransitionEffect2",
+      "action": "SetTransitionEffect1",
       "parameters": "Value=Fade",
       "comment": "Set transition to fade"
     },
@@ -209,7 +209,7 @@
       "actionType": "vmix-http",
       "state": 1,
       "requestType": "Function",
-      "action": "SetTransitionEffect2",
+      "action": "SetTransitionEffect1",
       "parameters": "Value=Fly",
       "comment": "Set transition to Fly"
     },
@@ -218,7 +218,7 @@
         "actionType": "vmix-http",
         "state": 1,
         "requestType": "Function",
-        "action": "SetTransitionEffect2",
+        "action": "SetTransitionEffect1",
         "parameters": "Value=CubeZoom",
         "comment": "Set transition to CubeZoom"
       },
