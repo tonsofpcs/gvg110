@@ -80,6 +80,7 @@ def buttonOffEvent(button):
     print(button)
 
 def analogEvent(address, value):
+    print("analogEvent")
     global tbarmaxinvert
     Search = Query()
     result = analogcmd.search((Search.state == 1) & (Search.analog == int(analog)))
@@ -227,6 +228,7 @@ class Server(WebSocket):
                     setPGM(1)
         if split[0] == "a":
             del split[0]
+            print(split)
             for address in range(0, len(split), 2):
                 analogEvent(int(split[address]), int(split[address + 1]))
             #analog
