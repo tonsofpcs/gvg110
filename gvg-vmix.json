@@ -1,0 +1,350 @@
+{
+  "_default": {},
+  "config" : {
+    "vmixhost" : "192.168.1.31",
+    "vmixhttpport" : "8088",
+    "vmixapiroot" : "API/?"
+  },
+  "buttonCMD": {
+    "1": {
+      "button": 24,
+      "actionType": "vmix-http",
+      "state": 1,
+      "requestType": "Function",
+      "action": "PreviewInput",
+      "parameters" : "Input=1"
+    },
+    "2": {
+      "button": 25,
+      "actionType": "vmix-http",
+      "state": 1,
+      "requestType": "Function",
+      "action": "PreviewInput",
+      "parameters" : "Input=2"
+    },
+    "3": {
+      "button": 26,
+      "actionType": "vmix-http",
+      "state": 1,
+      "requestType": "Function",
+      "action": "PreviewInput",
+      "parameters" : "Input=3"
+    },
+    "4": {
+      "button": 27,
+      "actionType": "vmix-http",
+      "state": 1,
+      "requestType": "Function",
+      "action": "PreviewInput",
+      "parameters" : "Input=4"
+    },
+    "5": {
+      "button": 28,
+      "actionType": "vmix-http",
+      "state": 1,
+      "requestType": "Function",
+      "action": "PreviewInput",
+      "parameters" : "Input=5"
+    },
+    "6": {
+      "button": 29,
+      "actionType": "vmix-http",
+      "state": 1,
+      "requestType": "Function",
+      "action": "PreviewInput",
+      "parameters" : "Input=6"
+    },
+    "7": {
+      "button": 30,
+      "actionType": "vmix-http",
+      "state": 1,
+      "requestType": "Function",
+      "action": "PreviewInput",
+      "parameters" : "Input=7"
+    },
+    "8": {
+      "button": 31,
+      "actionType": "vmix-http",
+      "state": 1,
+      "requestType": "Function",
+      "action": "PreviewInput",
+      "parameters" : "Input=8"
+    },
+    "9": {
+      "button": 36,
+      "actionType": "vmix-http",
+      "state": 1,
+      "requestType": "Function",
+      "action": "PreviewInput",
+      "parameters" : "Input=9"
+    },
+    "10": {
+      "button": 37,
+      "actionType": "vmix-http",
+      "state": 1,
+      "requestType": "Function",
+      "action": "PreviewInput",
+      "parameters" : "Input=10"
+    },
+    "11": {
+      "button": 16,
+      "actionType": "vmix-http",
+      "state": 1,
+      "requestType": "Function",
+      "action": "CutDirect",
+      "parameters" : "Input=1"
+    },
+    "12": {
+      "button": 17,
+      "actionType": "vmix-http",
+      "state": 1,
+      "requestType": "Function",
+      "action": "CutDirect",
+      "parameters" : "Input=2"
+    },
+    "13": {
+      "button": 18,
+      "actionType": "vmix-http",
+      "state": 1,
+      "requestType": "Function",
+      "action": "CutDirect",
+      "parameters" : "Input=3"
+    },
+    "14": {
+      "button": 19,
+      "actionType": "vmix-http",
+      "state": 1,
+      "requestType": "Function",
+      "action": "CutDirect",
+      "parameters" : "Input=4"
+    },
+    "15": {
+      "button": 20,
+      "actionType": "vmix-http",
+      "state": 1,
+      "requestType": "Function",
+      "action": "CutDirect",
+      "parameters" : "Input=5"
+    },
+    "16": {
+      "button": 21,
+      "actionType": "vmix-http",
+      "state": 1,
+      "requestType": "Function",
+      "action": "CutDirect",
+      "parameters" : "Input=6"
+    },
+    "17": {
+      "button": 22,
+      "actionType": "vmix-http",
+      "state": 1,
+      "requestType": "Function",
+      "action": "CutDirect",
+      "parameters" : "Input=7"
+    },
+    "18": {
+      "button": 23,
+      "actionType": "vmix-http",
+      "state": 1,
+      "requestType": "Function",
+      "action": "CutDirect",
+      "parameters" : "Input=8"
+    },
+    "19": {
+      "button": 32,
+      "actionType": "vmix-http",
+      "state": 1,
+      "requestType": "Function",
+      "action": "CutDirect",
+      "parameters" : "Input=9"
+    },
+    "20": {
+      "button": 33,
+      "actionType": "vmix-http",
+      "state": 1,
+      "requestType": "Function",
+      "action": "CutDirect",
+      "parameters" : "Input=10"
+    },
+    "21": {
+      "button": 38,
+      "actionType": "vmix-http",
+      "state": 1,
+      "requestType": "Function",
+      "action": "SetFader",
+      "parameters" : "Value=255",
+      "comment" : "this seems bad.  No take command?"
+    },
+    "22": {
+      "button": 39,
+      "actionType": "vmix-http",
+      "requestType": "Function",
+      "action": "Transition2",
+      "parameters" : "",
+      "comment" : "Auto take - second transition button"
+    },
+    "23": {
+      "button": 51,
+      "actionType": "vmix-http",
+      "state": 1,
+      "requestType": "Function",
+      "action": "SetTransitionEffect2",
+      "parameters" : "Value=Wipe",
+      "comment" : "Set transition to wipe"
+    },
+    "24": {
+      "button": 50,
+      "actionType": "vmix-http",
+      "state": 1,
+      "requestType": "Function",
+      "action": "SetTransitionEffect2",
+      "parameters" : "Value=Fade",
+      "comment" : "Set transition to fade"
+    },
+    "25": {
+      "button": 48,
+      "actionType": "vmix-http",
+      "state": 1,
+      "requestType": "Function",
+      "action": "SetTransitionEffect2",
+      "parameters" : "Value=Fly",
+      "comment" : "Set transition to Fly"
+    },
+    "26": {
+        "button": 49,
+        "actionType": "vmix-http",
+        "state": 1,
+        "requestType": "Function",
+        "action": "SetTransitionEffect2",
+        "parameters" : "Value=CubeZoom",
+        "comment" : "Set transition to CubeZoom"
+      },
+    "27": {
+      "button": 8,
+      "actionType": "vmix-http",
+      "state": 1,
+      "toggle": 1,
+      "requestType": "Function",
+      "action": "OverlayInput1",
+      "parameters" : "Input=1",
+      "comment" : "Key 1"
+    },
+    "28": {
+      "button": 9,
+      "actionType": "vmix-http",
+      "state": 1,
+      "toggle": 2,
+      "requestType": "Function",
+      "action": "OverlayInput1",
+      "parameters" : "Input=2"
+    }, 
+    "29": {
+      "button": 10,
+      "actionType": "vmix-http",
+      "state": 1,
+      "toggle": 3,
+      "requestType": "Function",
+      "action": "OverlayInput1",
+      "parameters" : "Input=3"
+    }, 
+    "30": {
+      "button": 11,
+      "actionType": "vmix-http",
+      "state": 1,
+      "toggle": 4,
+      "requestType": "Function",
+      "action": "OverlayInput1",
+      "parameters" : "Input=4"
+    }, 
+    "31": {
+      "button": 12,
+      "actionType": "vmix-http",
+      "state": 1,
+      "toggle": 5,
+      "requestType": "Function",
+      "action": "OverlayInput1",
+      "parameters" : "Input=5"
+    }, 
+    "32": {
+      "button": 13,
+      "actionType": "vmix-http",
+      "state": 1,
+      "toggle": 6,
+      "requestType": "Function",
+      "action": "OverlayInput1",
+      "parameters" : "Input=6"
+    }, 
+    "33": {
+      "button": 14,
+      "actionType": "vmix-http",
+      "state": 1,
+      "toggle": 7,
+      "requestType": "Function",
+      "action": "OverlayInput1",
+      "parameters" : "Input=7"
+    }, 
+    "34": {
+      "button": 15,
+      "actionType": "vmix-http",
+      "state": 1,
+      "toggle": 8,
+      "requestType": "Function",
+      "action": "OverlayInput1",
+      "parameters" : "Input=8"
+    }, 
+    "35": {
+      "button": 34,
+      "actionType": "vmix-http",
+      "state": 1,
+      "toggle": 9,
+      "requestType": "Function",
+      "action": "OverlayInput1",
+      "parameters" : "Input=9"
+    }, 
+    "36": {
+      "button": 35,
+      "actionType": "vmix-http",
+      "state": 1,
+      "toggle": 10,
+      "requestType": "Function",
+      "action": "OverlayInput1",
+      "parameters" : "Input=10"
+    },
+    "41": {
+      "button": 52,
+      "actionType": "vmix-http",
+      "requestType": "Function",
+      "state": 1,
+      "action": "OverlayInput1Off",
+      "comment": "DSK cut off"
+    },
+    "42": {
+      "button": 53,
+      "requestType": "Function",
+      "state": 1,
+      "action": "OverlayInput1Out",
+      "comment": "DSK transition out"
+    },
+    "43": {
+      "button": 54,
+      "actionType": "vmix-http",
+      "requestType": "Function",
+      "state": 1,
+      "toggle": 11,
+      "togglelamp": 40,
+      "action": "FadeToBlack",
+      "comment": "DSK transition out"
+    }
+  },
+  "analogCMD": {
+    "1": {
+      "analog": 2,
+      "analogreplace" : 1,
+      "actionType": "vmix-http",
+      "state": 1,
+      "requestType": "Function",
+      "action": "SetFader",
+      "parameters" : "Value=$analog$"
+    }
+  }
+}
