@@ -70,14 +70,8 @@ def buttonOnEvent(button):
             except:
                 pass
             if line["actionType"] == "vmix-http":
-                try:
-                    parameters = line["parameters"]
-                except:
-                    parameters = ""
-                print("parameters test:")
-                print(parameters)
+                parameters = line["parameters"]
                 action = 'Function=' + action + '&' + line["parameters"]
-                print(action)
                 vmix_http(action)
     elif button in makroKeys:
         x = 1
