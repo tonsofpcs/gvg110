@@ -66,7 +66,6 @@ def buttonOnEvent(button):
                 if line["togglelamp"] >= 0:
                     toggleit = int(line["toggle"])
                     lamp = int(line["togglelamp"])
-                    toggle[toggleit] = not(toggle[toggleit])
                     setLED(lamp,toggle[toggleit])
             except:
                 pass
