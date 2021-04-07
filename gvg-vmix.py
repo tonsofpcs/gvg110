@@ -124,7 +124,7 @@ def analogEvent(address, value):
     action = line["action"]
     action = action.replace("$analog$", value)
     if line["actionType"] == "vmix-http":
-        requeststring = 'Function=' + action + '&' + line["parameters"]
+        action = 'Function=' + action + '&' + line["parameters"]
         vmix_http(action)
 
 def setPRV(i):
