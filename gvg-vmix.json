@@ -1,9 +1,9 @@
 {
   "_default": {},
-  "config" : {
-    "vmixhost" : "192.168.1.31",
-    "vmixhttpport" : "8088",
-    "vmixapiroot" : "API/?"
+  "config": {
+    "vmixhost": "192.168.1.31",
+    "vmixhttpport": "8088",
+    "vmixapiroot": "API/?"
   },
   "buttonCMD": {
     "1": {
@@ -12,7 +12,7 @@
       "state": 1,
       "requestType": "Function",
       "action": "PreviewInput",
-      "parameters" : "Input=1"
+      "parameters": "Input=1"
     },
     "2": {
       "button": 25,
@@ -20,7 +20,7 @@
       "state": 1,
       "requestType": "Function",
       "action": "PreviewInput",
-      "parameters" : "Input=2"
+      "parameters": "Input=2"
     },
     "3": {
       "button": 26,
@@ -28,7 +28,7 @@
       "state": 1,
       "requestType": "Function",
       "action": "PreviewInput",
-      "parameters" : "Input=3"
+      "parameters": "Input=3"
     },
     "4": {
       "button": 27,
@@ -36,7 +36,7 @@
       "state": 1,
       "requestType": "Function",
       "action": "PreviewInput",
-      "parameters" : "Input=4"
+      "parameters": "Input=4"
     },
     "5": {
       "button": 28,
@@ -44,7 +44,7 @@
       "state": 1,
       "requestType": "Function",
       "action": "PreviewInput",
-      "parameters" : "Input=5"
+      "parameters": "Input=5"
     },
     "6": {
       "button": 29,
@@ -52,7 +52,7 @@
       "state": 1,
       "requestType": "Function",
       "action": "PreviewInput",
-      "parameters" : "Input=6"
+      "parameters": "Input=6"
     },
     "7": {
       "button": 30,
@@ -60,7 +60,7 @@
       "state": 1,
       "requestType": "Function",
       "action": "PreviewInput",
-      "parameters" : "Input=7"
+      "parameters": "Input=7"
     },
     "8": {
       "button": 31,
@@ -68,7 +68,7 @@
       "state": 1,
       "requestType": "Function",
       "action": "PreviewInput",
-      "parameters" : "Input=8"
+      "parameters": "Input=8"
     },
     "9": {
       "button": 36,
@@ -76,7 +76,7 @@
       "state": 1,
       "requestType": "Function",
       "action": "PreviewInput",
-      "parameters" : "Input=9"
+      "parameters": "Input=9"
     },
     "10": {
       "button": 37,
@@ -84,7 +84,7 @@
       "state": 1,
       "requestType": "Function",
       "action": "PreviewInput",
-      "parameters" : "Input=10"
+      "parameters": "Input=10"
     },
     "11": {
       "button": 16,
@@ -92,7 +92,7 @@
       "state": 1,
       "requestType": "Function",
       "action": "CutDirect",
-      "parameters" : "Input=1"
+      "parameters": "Input=1"
     },
     "12": {
       "button": 17,
@@ -100,7 +100,7 @@
       "state": 1,
       "requestType": "Function",
       "action": "CutDirect",
-      "parameters" : "Input=2"
+      "parameters": "Input=2"
     },
     "13": {
       "button": 18,
@@ -108,7 +108,7 @@
       "state": 1,
       "requestType": "Function",
       "action": "CutDirect",
-      "parameters" : "Input=3"
+      "parameters": "Input=3"
     },
     "14": {
       "button": 19,
@@ -116,7 +116,7 @@
       "state": 1,
       "requestType": "Function",
       "action": "CutDirect",
-      "parameters" : "Input=4"
+      "parameters": "Input=4"
     },
     "15": {
       "button": 20,
@@ -124,7 +124,7 @@
       "state": 1,
       "requestType": "Function",
       "action": "CutDirect",
-      "parameters" : "Input=5"
+      "parameters": "Input=5"
     },
     "16": {
       "button": 21,
@@ -132,7 +132,7 @@
       "state": 1,
       "requestType": "Function",
       "action": "CutDirect",
-      "parameters" : "Input=6"
+      "parameters": "Input=6"
     },
     "17": {
       "button": 22,
@@ -140,7 +140,7 @@
       "state": 1,
       "requestType": "Function",
       "action": "CutDirect",
-      "parameters" : "Input=7"
+      "parameters": "Input=7"
     },
     "18": {
       "button": 23,
@@ -148,7 +148,7 @@
       "state": 1,
       "requestType": "Function",
       "action": "CutDirect",
-      "parameters" : "Input=8"
+      "parameters": "Input=8"
     },
     "19": {
       "button": 32,
@@ -156,7 +156,7 @@
       "state": 1,
       "requestType": "Function",
       "action": "CutDirect",
-      "parameters" : "Input=9"
+      "parameters": "Input=9"
     },
     "20": {
       "button": 33,
@@ -164,7 +164,7 @@
       "state": 1,
       "requestType": "Function",
       "action": "CutDirect",
-      "parameters" : "Input=10"
+      "parameters": "Input=10"
     },
     "21": {
       "button": 38,
@@ -172,16 +172,16 @@
       "state": 1,
       "requestType": "Function",
       "action": "SetFader",
-      "parameters" : "Value=255",
-      "comment" : "this seems bad.  No take command?"
+      "parameters": "Value=255",
+      "comment": "this seems bad.  No take command?"
     },
     "22": {
       "button": 39,
       "actionType": "vmix-http",
       "requestType": "Function",
       "action": "Transition2",
-      "parameters" : "",
-      "comment" : "Auto take - second transition button"
+      "parameters": "",
+      "comment": "Auto take - second transition button"
     },
     "23": {
       "button": 51,
@@ -189,8 +189,8 @@
       "state": 1,
       "requestType": "Function",
       "action": "SetTransitionEffect2",
-      "parameters" : "Value=Wipe",
-      "comment" : "Set transition to wipe"
+      "parameters": "Value=Wipe",
+      "comment": "Set transition to wipe"
     },
     "24": {
       "button": 50,
@@ -198,8 +198,8 @@
       "state": 1,
       "requestType": "Function",
       "action": "SetTransitionEffect2",
-      "parameters" : "Value=Fade",
-      "comment" : "Set transition to fade"
+      "parameters": "Value=Fade",
+      "comment": "Set transition to fade"
     },
     "25": {
       "button": 48,
@@ -207,8 +207,8 @@
       "state": 1,
       "requestType": "Function",
       "action": "SetTransitionEffect2",
-      "parameters" : "Value=Fly",
-      "comment" : "Set transition to Fly"
+      "parameters": "Value=Fly",
+      "comment": "Set transition to Fly"
     },
     "26": {
         "button": 49,
@@ -216,8 +216,8 @@
         "state": 1,
         "requestType": "Function",
         "action": "SetTransitionEffect2",
-        "parameters" : "Value=CubeZoom",
-        "comment" : "Set transition to CubeZoom"
+        "parameters": "Value=CubeZoom",
+        "comment": "Set transition to CubeZoom"
       },
     "27": {
       "button": 8,
@@ -226,8 +226,8 @@
       "toggle": 1,
       "requestType": "Function",
       "action": "OverlayInput1",
-      "parameters" : "Input=1",
-      "comment" : "Key 1"
+      "parameters": "Input=1",
+      "comment": "Key 1"
     },
     "28": {
       "button": 9,
@@ -236,7 +236,7 @@
       "toggle": 2,
       "requestType": "Function",
       "action": "OverlayInput1",
-      "parameters" : "Input=2"
+      "parameters": "Input=2"
     }, 
     "29": {
       "button": 10,
@@ -245,7 +245,7 @@
       "toggle": 3,
       "requestType": "Function",
       "action": "OverlayInput1",
-      "parameters" : "Input=3"
+      "parameters": "Input=3"
     }, 
     "30": {
       "button": 11,
@@ -254,7 +254,7 @@
       "toggle": 4,
       "requestType": "Function",
       "action": "OverlayInput1",
-      "parameters" : "Input=4"
+      "parameters": "Input=4"
     }, 
     "31": {
       "button": 12,
@@ -263,7 +263,7 @@
       "toggle": 5,
       "requestType": "Function",
       "action": "OverlayInput1",
-      "parameters" : "Input=5"
+      "parameters": "Input=5"
     }, 
     "32": {
       "button": 13,
@@ -272,7 +272,7 @@
       "toggle": 6,
       "requestType": "Function",
       "action": "OverlayInput1",
-      "parameters" : "Input=6"
+      "parameters": "Input=6"
     }, 
     "33": {
       "button": 14,
@@ -281,7 +281,7 @@
       "toggle": 7,
       "requestType": "Function",
       "action": "OverlayInput1",
-      "parameters" : "Input=7"
+      "parameters": "Input=7"
     }, 
     "34": {
       "button": 15,
@@ -290,7 +290,7 @@
       "toggle": 8,
       "requestType": "Function",
       "action": "OverlayInput1",
-      "parameters" : "Input=8"
+      "parameters": "Input=8"
     }, 
     "35": {
       "button": 34,
@@ -299,7 +299,7 @@
       "toggle": 9,
       "requestType": "Function",
       "action": "OverlayInput1",
-      "parameters" : "Input=9"
+      "parameters": "Input=9"
     }, 
     "36": {
       "button": 35,
@@ -308,7 +308,7 @@
       "toggle": 10,
       "requestType": "Function",
       "action": "OverlayInput1",
-      "parameters" : "Input=10"
+      "parameters": "Input=10"
     },
     "41": {
       "button": 52,
@@ -339,14 +339,14 @@
   "analogCMD": {
     "1": {
       "analog": 2,
-      "analogreplace" : 1,
+      "analogreplace": 1,
       "actionType": "vmix-http",
       "state": 1,
       "narrow": 1,
       "scale": 255,
       "requestType": "Function",
       "action": "SetFader",
-      "parameters" : "Value=$analog$"
+      "parameters": "Value=$analog$"
     }
   }
 }

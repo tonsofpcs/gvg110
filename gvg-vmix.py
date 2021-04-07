@@ -12,6 +12,7 @@ import requests
 db = TinyDB('gvg-vmix.json')
 bttcmd = db.table('buttonCMD')
 analogcmd = db.table('analogCMD')
+configdb = db.table('config')
 
 PGMled = [33, 35, 37, 39, 13, 15, 14, 12, 0, 2]
 PRVled = [38, 36, 34, 32, 1, 3, 5, 7, 6, 4]
@@ -38,7 +39,6 @@ lastPRV = 0
 
 connstat = 0
 
-configdb = db.table('config')
 
 vmixhost = configdb.all()[0].get("vmixhost")
 vmixhttpport = configdb.all()[0].get("vmixhttpport")
