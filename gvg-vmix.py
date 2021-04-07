@@ -163,7 +163,7 @@ def setLED(lamp, state):
         print("a:%s:" % str(lamp))
         sendPanelMSG("a:%s:" % str(lamp))
     else:
-        print("b:%s:" % str(i))
+        print("b:%s:" % str(lamp))
         sendPanelMSG("b:%s:" % str(lamp))
     
 def updateDisplayValue(value):
