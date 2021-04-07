@@ -80,13 +80,10 @@ def buttonOffEvent(button):
     print(button)
 
 def analogEvent(address, value):
-    print("analogEvent")
     global tbarmaxinvert
     Search = Query()
-    print("still here")
     result = analogcmd.search((Search.state == 1) & (Search.analog == int(address)))
     if result:
-        print("ok, we got something")
         print(result)
         for line in result:
             try:
@@ -126,9 +123,9 @@ def analogEvent(address, value):
         value = int((value * scale) / 1023)
 
     action = line["action"]
-    action = action.replace("$analog$", value)
     if line["actionType"] == "vmix-http":
         action = 'Function=' + action + '&' + line["parameters"]
+        action = action.replace("$analog$", value)
         vmix_http(action)
 
 def setPRV(i):
