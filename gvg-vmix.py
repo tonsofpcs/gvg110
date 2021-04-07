@@ -123,9 +123,12 @@ def analogEvent(address, value):
         value = int((value * scale) / 1023)
 
     action = line["action"]
+    print(action)
     if line["actionType"] == "vmix-http":
         action = 'Function=' + action + '&' + line["parameters"]
+        print(action)
         action = action.replace("$analog$", value)
+        print(action)
         vmix_http(action)
 
 def setPRV(i):
@@ -227,7 +230,6 @@ class Server(WebSocket):
                     setPGM(1)
         if split[0] == "a":
             del split[0]
-            print(split)
             for address in range(0, len(split), 2):
                 analogEvent(int(split[address]), int(split[address + 1]))
             #analog
