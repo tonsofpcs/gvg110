@@ -9,7 +9,7 @@ from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
 from tinydb import TinyDB, Query
 import requests
 
-db = TinyDB('gvg-obs.json')
+db = TinyDB('gvg-vmix.json')
 bttcmd = db.table('buttonCMD')
 analogcmd = db.table('analogCMD')
 
