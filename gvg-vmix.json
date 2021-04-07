@@ -181,6 +181,7 @@
       "button": 39,
       "actionType": "vmix-http",
       "requestType": "Function",
+      "state": 1,
       "action": "Transition2",
       "parameters": "",
       "comment": "Auto take - second transition button"
