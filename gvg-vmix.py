@@ -70,8 +70,11 @@ def buttonOnEvent(button):
             except:
                 pass
             if line["actionType"] == "vmix-http":
-                parameters = line["parameters"]
-                action = 'Function=' + action + '&' + line["parameters"]
+                try:
+                    parameters = line["parameters"]
+                except:
+                    parameters = ""
+                action = 'Function=' + action + '&' + parameters
                 vmix_http(action)
     elif button in makroKeys:
         x = 1
@@ -121,7 +124,11 @@ def analogEvent(address, value):
             value = int((value * scale) / 1023)
             action = line["action"]
             if line["actionType"] == "vmix-http":
-                action = 'Function=' + action + '&' + line["parameters"]
+                try:
+                    parameters = line["parameters"]
+                except:
+                    parameters = ""
+                action = 'Function=' + action + '&' + parameters
                 action = action.replace("$analog$", str(value))
                 vmix_http(action)
 
