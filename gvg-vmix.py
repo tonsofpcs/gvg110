@@ -102,8 +102,6 @@ def analogEvent(address, value):
             if 1019 > value:
                 value = 1023
         
-        value = int((value * scale) / 1023)
-
     if address == 2: #Tbar
         if value < 3:
             sendPanelMSG("b:46:")
@@ -117,11 +115,13 @@ def analogEvent(address, value):
         if tbarmaxinvert:
             value = value
         else:
-            value = scale - value
+            value = 1023 - value
         
-        if value == scale:
+        if value == 1023:
             tbarmaxinvert = not(tbarmaxinvert)
-        
+
+        value = int((value * scale) / 1023)
+
     action = line["action"]
     action = action.replace("$analog$", value)
     if line["actionType"] == "vmix-http":
