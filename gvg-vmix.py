@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 #!/usr/bin/env python3
-#gvg-obs.py  2020 Eric Adler
+#gvg-vmix.py  2021 Eric Adler
 #based on gvg.py by lebaston100
 
 
@@ -25,7 +25,7 @@ keyer = "keyA"
 
 toggle = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 tbarmaxinvert = 0
-vmixapi = ""
+vmixapi = " "
 
 clients = []
 display = [15, 15, 15, 0, 15]
@@ -43,7 +43,6 @@ configdb = db.table('config')
 vmixhost = configdb.all()[0].get("vmixhost")
 vmixhttpport = configdb.all()[0].get("vmixhttpport")
 vmixapiroot = configdb.all()[0].get("vmixapiroot")
-
 
 #Events
 def buttonOnEvent(button):
