@@ -344,6 +344,7 @@ def client_start():
 def vmix_http(requeststring):
     global vmixapi
     querystring = vmixapi + requeststring
+    print(querystring)
     r = requests.get(querystring)
     print(r)
 
