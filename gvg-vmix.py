@@ -127,7 +127,8 @@ def analogEvent(address, value):
     if line["actionType"] == "vmix-http":
         action = 'Function=' + action + '&' + line["parameters"]
         print(action)
-        action = action.replace("$analog$", value)
+        print(value)
+        action = action.replace("$analog$", str(value))
         print(action)
         vmix_http(action)
 
