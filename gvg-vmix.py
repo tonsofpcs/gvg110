@@ -46,6 +46,7 @@ vmixapiroot = configdb.all()[0].get("vmixapiroot")
 
 #Events
 def buttonOnEvent(button):
+    global toggle
     print(button)
     Search = Query()
     result = bttcmd.search((Search.state == 1) & (Search.button == int(button)))
