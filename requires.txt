@@ -1,0 +1,4 @@
+websocket
+SimpleWebSocketServer
+tinydb
+requests
