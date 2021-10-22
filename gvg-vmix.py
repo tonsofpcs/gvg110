@@ -72,7 +72,7 @@ def buttonOnEvent(button):
                     setLED(lamp,toggle[toggleit])
             except:
                 pass
-            if line["actionType"] == "vmix-http":
+            if line["actionType"] == "vmix-tcp":
                 try:
                     parameters = line["parameters"]
                 except:
@@ -126,7 +126,7 @@ def analogEvent(address, value):
                     tbarmaxinvert = not(tbarmaxinvert)
             value = int((value * scale) / 1023)
             action = line["action"]
-            if line["actionType"] == "vmix-http":
+            if line["actionType"] == "vmix-tcp":
                 try:
                     parameters = line["parameters"]
                 except:
