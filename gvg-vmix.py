@@ -44,6 +44,9 @@ vmixhost = configdb.all()[0].get("vmixhost")
 vmixapiport = configdb.all()[0].get("vmixapipport")
 vmixapiroot = configdb.all()[0].get("vmixapiroot")
 
+sockconnected = False
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
 #Events
 def buttonOnEvent(button):
     global toggle
