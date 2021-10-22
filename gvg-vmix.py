@@ -41,7 +41,7 @@ connstat = 0
 
 
 vmixhost = configdb.all()[0].get("vmixhost")
-vmixhttpport = configdb.all()[0].get("vmixhttpport")
+vmixapiport = configdb.all()[0].get("vmixapipport")
 vmixapiroot = configdb.all()[0].get("vmixapiroot")
 
 #Events
@@ -74,8 +74,8 @@ def buttonOnEvent(button):
                     parameters = line["parameters"]
                 except:
                     parameters = ""
-                action = 'Function=' + action + '&' + parameters
-                vmix_http(action)
+                action = 'FUNCTION ' + action + '&' + parameters
+                vmix_tcp(action)
     elif button in makroKeys:
         x = 1
 
@@ -128,9 +128,9 @@ def analogEvent(address, value):
                     parameters = line["parameters"]
                 except:
                     parameters = ""
-                action = 'Function=' + action + '&' + parameters
+                action = 'FUNCTION ' + action + '&' + parameters
                 action = action.replace("$analog$", str(value))
-                vmix_http(action)
+                vmix_tcp(action)
 
 def setPRV(i):
     if i < 11:
@@ -323,18 +323,10 @@ def ws_client_on_message(ws, message):
                 sendPanelMSG("b:50:52:54:48:")
         print(jsn)
 
-def ws_client_on_error(ws, error):
-    print(error)
+def vmix_tcp(requeststring):
+    print(requeststring)
+    sock.send(bytes((requeststring + '\r\n'),'ascii'))
 
-def ws_client_on_close(ws):
-    global connstat
-    print("### ws_client closed ###")
-    connstat = False
-
-def ws_client_on_open(ws):
-    global connstat
-    print("### ws_client opened ###")
-    connstat = True
 
 def server_start():
     #while True:
@@ -342,19 +334,21 @@ def server_start():
     print("server restart")
 
 def client_start():
-    #while True:
-    ws_client.run_forever() #()
+    print('connect %s : %s' % server_address, file=sys.stderr)
+    sock.connect(server_address)
+    time.sleep(2)
+    #result = sock.send(bytes("SEND MESSAGE", 'ascii'))
+    #print("result " + str(result))
+    #    data = sock.recv(16)
+    #    print(data, end = '')
     print("client restart")
-
-def vmix_http(requeststring):
-    global vmixapi
-    querystring = vmixapi + requeststring
-    print(querystring)
-    r = requests.get(querystring)
-    print(r)
 
 if __name__ == "__main__":
     server = SimpleWebSocketServer('', 1234, Server)
     threading.Thread(target=server_start).start()
     #threading.Thread(target=client_start).start()
-    vmixapi = 'http://' + vmixhost + ':' + vmixhttpport + '/' + vmixapiroot
+    server_address = (vmixhost, vmixapiport)
+    sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    #sock.bind(server_address)
+    threading.Thread(target=client_start).start()
+
